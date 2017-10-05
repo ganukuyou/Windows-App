@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Project/Windows/src/windows/Windows.java</file>
+            <file>file:/E:/Project/Windows-App/src/MyFrame/PanelQuanLyKhachHang.java</file>
+            <file>file:/E:/Project/Windows-App/src/MyFrame/GiaoDienDangNhap.java</file>
+            <file>file:/E:/Project/Windows-App/src/MyFrame/PanelThongKeDoanhSo.java</file>
+            <file>file:/E:/Project/Windows-App/src/MyFrame/PaneLichSuBanHang.java</file>
+            <file>file:/E:/Project/Windows-App/src/MyFrame/GiaoDienNhanVien.java</file>
         </group>
     </open-files>
 </project-private>
