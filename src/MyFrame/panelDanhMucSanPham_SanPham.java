@@ -1583,7 +1583,7 @@ public class panelDanhMucSanPham_SanPham extends javax.swing.JPanel {
     
     private void LoadDataToTable()
     {
-                //Đổ dữ liệu vào để hiện thị model
+        //Đổ dữ liệu vào để hiện thị model
         DefaultTableModel tModel = (DefaultTableModel)tblHienThiModel.getModel();
         
         String c[] = new String[tModel.getColumnCount()];
