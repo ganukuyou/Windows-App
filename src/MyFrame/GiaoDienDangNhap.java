@@ -3,7 +3,11 @@ package MyFrame;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.sql.SQLException;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /*
@@ -11,7 +15,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Thanh Thu
@@ -24,18 +27,18 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
     public GiaoDienDangNhap() {
         initComponents();
         centerFrame();
-        
     }
+
     //ham thiet lap giao dien  giua man hinh
     private void centerFrame() {
 
-            Dimension windowSize = getSize();
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            Point centerPoint = ge.getCenterPoint();
+        Dimension windowSize = getSize();
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Point centerPoint = ge.getCenterPoint();
 
-            int dx = centerPoint.x - windowSize.width / 2;
-            int dy = centerPoint.y - windowSize.height / 2;    
-            setLocation(dx, dy);
+        int dx = centerPoint.x - windowSize.width / 2;
+        int dy = centerPoint.y - windowSize.height / 2;
+        setLocation(dx, dy);
     }
 
     /**
@@ -200,6 +203,36 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
+
+        if (txtUsername.getText().isEmpty() || String.valueOf(txtPassword.getPassword()).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tài Khoản Hoặc Mật Khẩu Không Được Để Trống", "Cảnh Báo", JOptionPane.OK_OPTION);
+        }
+        else
+        {
+            //Nhân viên kỹ thuật ký hiệu KT
+            //Nhân viên bán hàng ký hiệu BH
+            //Nhân viên kiểm kho ký hiệu KK
+            //Quản trị hệ thống ký hiệu QT
+            String LoaiNV = txtUsername.getText().substring(0, 2).toUpperCase();
+            String MaNV = txtUsername.getText();
+            
+            switch(LoaiNV)
+            {
+                case "BH": {
+                try {
+                    new GiaoDienNhanVien().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+break;
+                case "KT": new GiaoDienKyThuat().setVisible(true); break;
+            }
+            
+        }
+        
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
@@ -207,16 +240,6 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyBoActionPerformed
 
     private void btnDangNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangNhapMouseClicked
-        //xu ly dang nhap
-        String user=new String(txtUsername.getText());
-        String pass=new String(txtPassword.getPassword());
-        if(user.equals("user") && pass.equals("pass"))
-        {
-            this.dispose();
-        GiaoDienNhanVien nhanvien=new GiaoDienNhanVien();
-        nhanvien.setVisible(true);
-        
-        }
         
     }//GEN-LAST:event_btnDangNhapMouseClicked
 

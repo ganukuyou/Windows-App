@@ -5,19 +5,30 @@
  */
 package MyFrame;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Thanh Thu
  */
+
 public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
 
     /**
      * Creates new form panelDanhMucSanPham
      */
-    public panelDanhMucSanPham_BanHang() {
+    public panelDanhMucSanPham_BanHang() throws ClassNotFoundException, SQLException {
         initComponents();
+        
+        LoadDB();
     }
 
+    private void LoadDB() throws ClassNotFoundException, SQLException
+    {
+        dtDongHo = new DataTable("localhost", "clock", "dongho", 8, true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +44,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        lsvBangGia = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -78,12 +89,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         jRadioButton4.setBackground(new java.awt.Color(85, 169, 150));
         jRadioButton4.setText("Bán Lẻ");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(lsvBangGia);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/005-add.png"))); // NOI18N
         jLabel1.setText("Thêm vào đơn hàng");
@@ -218,7 +224,6 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
                                             .addComponent(jLabel18))))
                                 .addGap(67, 67, 67))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -248,7 +253,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
                                 .addComponent(jLabel14)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
@@ -285,7 +290,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
                             .addComponent(jLabel17))))
                 .addGap(9, 9, 9)
@@ -295,7 +300,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6))
                         .addGap(8, 8, 8)
@@ -332,7 +337,27 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public void setVisibleAndLoadData(boolean b) throws SQLException, IOException
+    {
+        this.setVisible(b);
+        
+        if(!b)
+            return;
+        
+        DefaultListModel<DongHo> t = new DefaultListModel();
+        
+        for(int i = 0; i < dtDongHo.getRowCount(); i++)
+        {
+            Object o[] = dtDongHo.getRow(i);
+            DongHo dh = new DongHo(o, dtDongHo.getImage(i));
+            t.addElement(dh);
+            
+        }
+        //lsvBangGia.setCellRenderer(new ItemRenderer());
+        lsvBangGia.setModel(t);
+    }
+    
+    private DataTable dtDongHo;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -358,7 +383,6 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
@@ -368,5 +392,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField13;
+    private javax.swing.JList<DongHo> lsvBangGia;
     // End of variables declaration//GEN-END:variables
+
 }

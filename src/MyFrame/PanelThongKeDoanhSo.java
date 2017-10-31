@@ -42,6 +42,10 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
 
+        setMaximumSize(new java.awt.Dimension(741, 550));
+        setMinimumSize(new java.awt.Dimension(741, 550));
+        setPreferredSize(new java.awt.Dimension(741, 550));
+
         jPanel2.setBackground(new java.awt.Color(85, 169, 150));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Doanh số bán hàng:"));
 
