@@ -3,6 +3,7 @@ package MyFrame;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -224,6 +225,8 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
+                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
                     Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
