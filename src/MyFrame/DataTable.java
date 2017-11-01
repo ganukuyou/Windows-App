@@ -23,6 +23,7 @@ public class DataTable {
     private int ColumnCount;
     private int RowCount;
     private InputStream hinh[];
+    private ResultSet rs;
     
     public DataTable(String host, String db, String table, int c, boolean using_image) throws ClassNotFoundException, SQLException
     {
@@ -34,9 +35,10 @@ public class DataTable {
         
         String q = "Select * from " + table + ";";
         
-        Statement st = con.createStatement();
+        Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                            ResultSet.CONCUR_UPDATABLE);
         
-        ResultSet rs = st.executeQuery(q);
+        rs = st.executeQuery(q);
         
         
         while(rs.next())
@@ -61,6 +63,7 @@ public class DataTable {
             }
         }
         
+        rs.beforeFirst();
     }
     
 
@@ -75,7 +78,7 @@ public class DataTable {
         
         Statement st = con.createStatement();
         
-        ResultSet rs = st.executeQuery(query);
+        rs = st.executeQuery(query);
         
         while(rs.next())
         {
@@ -85,6 +88,8 @@ public class DataTable {
             }
         }
         RowCount = data.size() / c;
+        
+        rs.beforeFirst();
     }
     
     public Object[] getRow(int i)
@@ -140,5 +145,94 @@ public class DataTable {
     public InputStream getImage(int index)
     {
         return hinh[index];
+    }
+    
+    public boolean UpdateDataTable(int row, Object newdata[]) throws SQLException
+    {
+        if(row >= RowCount || newdata.length > ColumnCount)
+            return false;
+        
+        for(int i = 0; i <= row; i++)
+        {
+            rs.next();
+        }
+        
+        for(int i = 0; i < ColumnCount; i++)
+        {
+            rs.updateObject(i, newdata[i]);
+        }
+        rs.updateRow();
+        
+        rs.beforeFirst();
+        
+        return true;
+    }
+    
+    public boolean InsertDataTable(int index_of_id, Object newdata[]) throws SQLException
+    {
+        if(newdata.length > ColumnCount)
+            return false;
+        
+        index_of_id += 1;
+        
+        rs.last();
+        int id = 0;
+        if(RowCount > 0)
+        id = rs.getInt(index_of_id) + 1;
+        
+        rs.moveToInsertRow();
+        rs.updateInt(index_of_id, id);
+        
+        for(int i = 1; i <= ColumnCount; i++)
+        {
+            if(i != index_of_id)
+            {
+                if(newdata[i - 1] instanceof String)
+                {
+                    rs.updateNString(i, newdata[i - 1].toString());
+                }
+                else 
+                {
+                    rs.updateObject(i, newdata[i - 1]);
+                }
+            }
+            
+        }
+        rs.insertRow();
+        rs.beforeFirst();
+        RefershData();
+        return true;
+    }
+    
+    public boolean DeleteDataTable(int row) throws SQLException
+    {
+        if(row >= RowCount)
+            return false;
+        
+        for(int i = 0; i <= row; i++)
+        {
+            rs.next();
+        }
+        
+        rs.deleteRow();
+        rs.beforeFirst();
+        RefershData();
+        return true;
+    }
+    
+    
+    private void RefershData() throws SQLException
+    {
+        data.clear();
+        while(rs.next())
+        {
+            for(int i = 1; i <= ColumnCount; i++)
+            {
+                data.add(rs.getObject(i));
+            }
+        }
+        RowCount = data.size() / ColumnCount;
+        
+        rs.beforeFirst();
     }
 }
