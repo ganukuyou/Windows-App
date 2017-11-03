@@ -22,8 +22,10 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
     /**
      * Creates new form panelDanhMucSanPham
      */
+   PanelChiTietSanPham panelChiTietSanPham;
     public panelDanhMucSanPham_BanHang() throws ClassNotFoundException, SQLException {
         initComponents();
+       panelChiTietSanPham=new PanelChiTietSanPham();
         
         LoadDB();
     }
@@ -88,6 +90,11 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
         jPanel12.add(edtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 238, -1));
 
+        lsvBangGia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lsvBangGiaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(lsvBangGia);
 
         jPanel12.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 721, 130));
@@ -309,6 +316,14 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         // TODO add your handling code here:
         LoadDataToComboBox();
     }//GEN-LAST:event_cmbIDKhachHangMouseClicked
+
+    private void lsvBangGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lsvBangGiaMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2)
+        {
+            JOptionPane.showMessageDialog(this, panelChiTietSanPham);
+        }
+    }//GEN-LAST:event_lsvBangGiaMouseClicked
 
     public void setVisibleAndLoadData(boolean b) throws SQLException, IOException, ClassNotFoundException
     {

@@ -44,6 +44,7 @@ public class panelDanhMucSanPham_KhoHang extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         lsvSanPham = new javax.swing.JList<>();
 
+        setBackground(new java.awt.Color(85, 169, 150));
         setMaximumSize(new java.awt.Dimension(741, 550));
         setMinimumSize(new java.awt.Dimension(741, 550));
         setPreferredSize(new java.awt.Dimension(741, 550));
