@@ -39,7 +39,7 @@ public class PanelQuanLyKhachHang extends javax.swing.JPanel {
         grid.gridy=0;
         layoutQuanLyKhachHang.add(pQuanLyKhachHang_ChinhSuaThemMoi,grid);
         pQuanLyKhachHang_ChinhSuaThemMoi.setVisible(false);
-        pQuanLyKhachHang_DanhSach.setVisibleAndLoadData(true, KHTable.getTable());//cho hien thi giao dien nay dau tien
+        pQuanLyKhachHang_DanhSach.setVisibleAndLoadData(true, KHTable);//cho hien thi giao dien nay dau tien
         btnDanhSachKhachHang.setBackground(Color.decode("#55a996"));//thiet lap mau sac khi nhan vao
     }
 
@@ -194,7 +194,7 @@ public class PanelQuanLyKhachHang extends javax.swing.JPanel {
     private void btnDanhSachKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDanhSachKhachHangMouseClicked
         // Cai dathien thi cho nut DanhSachKhachHang
         pQuanLyKhachHang_ChinhSuaThemMoi.setVisible(false);
-        pQuanLyKhachHang_DanhSach.setVisibleAndLoadData(true, KHTable.getTable());
+        pQuanLyKhachHang_DanhSach.setVisibleAndLoadData(true, KHTable);
         btnDanhSachKhachHang.setBackground(Color.decode("#55a996"));
         btnChinhSuaThemMoiKhachHnag.setBackground(Color.decode("#FFFFFF"));
         
@@ -202,7 +202,7 @@ public class PanelQuanLyKhachHang extends javax.swing.JPanel {
 
     private void btnChinhSuaThemMoiKhachHnagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChinhSuaThemMoiKhachHnagMouseClicked
         // Cai dathien thi cho nut Chinh sua them moi
-        pQuanLyKhachHang_ChinhSuaThemMoi.setVisibleAndLoadData(true, KHTable.getTable());
+        pQuanLyKhachHang_ChinhSuaThemMoi.setVisibleAndLoadData(true);
         pQuanLyKhachHang_DanhSach.setVisible(false);
         btnDanhSachKhachHang.setBackground(Color.decode("#FFFFFF"));
         btnChinhSuaThemMoiKhachHnag.setBackground(Color.decode("#55a996"));

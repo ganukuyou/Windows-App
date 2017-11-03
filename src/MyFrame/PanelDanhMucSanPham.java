@@ -256,6 +256,8 @@ public class PanelDanhMucSanPham extends javax.swing.JPanel {
             Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
         }
         panelKhoHang.setVisible(false);
         btnQuanLySanPham.setBackground(Color.decode("#FFFFFF"));
@@ -274,6 +276,8 @@ public class PanelDanhMucSanPham extends javax.swing.JPanel {
             Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
         }
         panelKhoHang.setVisible(true);
         btnQuanLySanPham.setBackground(Color.decode("#55a996"));
@@ -285,18 +289,22 @@ public class PanelDanhMucSanPham extends javax.swing.JPanel {
     private void btnbanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbanHangMouseClicked
          // Cai dathien thi cho nut Ban hang
         panelSP.setVisible(false);
-        
+        boolean result = false;
         try {
             panelBanhang.setVisibleAndLoadData(true);
         } catch (SQLException ex) {
             Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PanelDanhMucSanPham.class.getName()).log(Level.SEVERE, null, ex);
         }
         panelKhoHang.setVisible(false);
         btnQuanLySanPham.setBackground(Color.decode("#55a996"));
         btnKhoHang.setBackground(Color.decode("#55a996"));
         btnbanHang.setBackground(Color.decode("#FFFFFF"));
+        
+        
         
     }//GEN-LAST:event_btnbanHangMouseClicked
 

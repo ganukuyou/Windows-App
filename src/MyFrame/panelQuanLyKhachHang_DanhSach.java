@@ -5,6 +5,7 @@
  */
 package MyFrame;
 
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,7 +17,7 @@ public class panelQuanLyKhachHang_DanhSach extends javax.swing.JPanel {
     /**
      * Creates new form panelDanhMucSanPham
      */
-    public panelQuanLyKhachHang_DanhSach() {
+    public panelQuanLyKhachHang_DanhSach() throws ClassNotFoundException, SQLException {
         initComponents();
     }
 
@@ -95,16 +96,20 @@ public class panelQuanLyKhachHang_DanhSach extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    public void setVisibleAndLoadData(boolean v, Object[][] datas)
+    public void setVisibleAndLoadData(boolean v, DataTable dt)
     {
         this.setVisible(v);
+        if(!v)
+        {
+            return;
+        }
         
         DefaultTableModel tModel = (DefaultTableModel)tblKhachHang.getModel();
         
         
         String c[] = {"Mã Khách Hàng", "Tên Khách Hàng", "Địa Chỉ", "Số Điện Thoại"};
        
-        tModel.setDataVector(datas, c);
+        tModel.setDataVector(dt.getTable(), c);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
