@@ -33,7 +33,7 @@ public class DongHo{
     {
         this.gia = (int)o[4];
         this.mieuta = o[5].toString();
-        this.hinh = ImageIO.read(hinh);
+        //this.hinh = ImageIO.read(hinh);
     }
     
     int getGia()

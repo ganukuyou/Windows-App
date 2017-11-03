@@ -219,22 +219,31 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
             
             switch(LoaiNV)
             {
-                case "BH": {
-                try {
-                    new GiaoDienNhanVien().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-break;
+                case "BH": 
+                {
+                    try 
+                    {
+                        new GiaoDienNhanVien().setVisible(true);
+                        this.setVisible(false);
+                    } 
+                    catch (ClassNotFoundException ex) 
+                    {
+                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                    catch (SQLException ex)
+                    {
+                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                    catch (IOException ex) 
+                    {
+                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                    }break;
+                } 
+
                 case "KT": new GiaoDienKyThuat().setVisible(true); break;
             }
-            
         }
+        
         
     }//GEN-LAST:event_btnDangNhapActionPerformed
 

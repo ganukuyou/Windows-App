@@ -24,21 +24,38 @@ public class DataTable {
     private int RowCount;
     private InputStream hinh[];
     private ResultSet rs;
+    String query;
+    String host;
+    String db;
+    String user;
+    String pass;
+    
+    String hostOnline = "sql12.freemysqlhosting.net";
+    String dbOnline = "sql12202919";
+    String userOnline = "sql12202919";
+    String passOnline = "Ft4ZH5BaSA";
+    
+    private static ArrayList<DataTable> ListInstanceDB = new ArrayList<>();
     
     public DataTable(String host, String db, String table, int c, boolean using_image) throws ClassNotFoundException, SQLException
     {
         data = new ArrayList<>();
         ColumnCount = c;
         
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + host +"/" + db, "root", "");
+        this.host = host;
+        this.db = db;
+        this.user = "root";
+        this.pass = "";
         
-        String q = "Select * from " + table + ";";
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
+        
+        query = "Select * from " + table + ";";
         
         Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                                             ResultSet.CONCUR_UPDATABLE);
         
-        rs = st.executeQuery(q);
+        rs = st.executeQuery(query);
         
         
         while(rs.next())
@@ -62,23 +79,35 @@ public class DataTable {
                 i++;
             }
         }
-        
         rs.beforeFirst();
+        ListInstanceDB.add(this);
     }
     
 
     
     public DataTable(String host, String db, int c, String query) throws ClassNotFoundException, SQLException
     {
-        data = new ArrayList<>();
+        if(data == null)
+        {
+            data = new ArrayList<>();
+        }
+        
+        data.clear();
         ColumnCount = c;
         
+        this.query = query;
+        this.host = host;
+        this.db = db;
+        this.user = "root";
+        this.pass = "";
+        
         Class.forName("com.mysql.jdbc.Driver");
-        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + host +"/" + db, "root", "");
+        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
         
-        Statement st = con.createStatement();
+        Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                            ResultSet.CONCUR_UPDATABLE);
         
-        rs = st.executeQuery(query);
+        rs = st.executeQuery(this.query);
         
         while(rs.next())
         {
@@ -90,6 +119,7 @@ public class DataTable {
         RowCount = data.size() / c;
         
         rs.beforeFirst();
+        ListInstanceDB.add(this);
     }
     
     public Object[] getRow(int i)
@@ -147,23 +177,34 @@ public class DataTable {
         return hinh[index];
     }
     
-    public boolean UpdateDataTable(int row, Object newdata[]) throws SQLException
+    public boolean UpdateDataTable(int index_of_id, int row, Object newdata[]) throws SQLException
     {
         if(row >= RowCount || newdata.length > ColumnCount)
             return false;
         
+        index_of_id += 1;
         for(int i = 0; i <= row; i++)
         {
             rs.next();
         }
         
-        for(int i = 0; i < ColumnCount; i++)
+        for(int i = 1; i <= ColumnCount; i++)
         {
-            rs.updateObject(i, newdata[i]);
+            if(i != index_of_id)
+            {
+                if(newdata[i - 1] instanceof String)
+                {
+                    rs.updateNString(i, (String)newdata[i - 1]);
+                }
+                else 
+                {
+                    rs.updateObject(i, newdata[i - 1]);
+                }
+            }
         }
         rs.updateRow();
-        
         rs.beforeFirst();
+        RefershData();
         
         return true;
     }
@@ -220,8 +261,40 @@ public class DataTable {
         return true;
     }
     
+    public static void UpdateAllInstance() throws ClassNotFoundException, SQLException
+    {
+        for(int i = 0; i < ListInstanceDB.size(); i++)
+        {
+            ListInstanceDB.get(i).rs.close();
+            ListInstanceDB.get(i).UpdateNewData();
+        }
+    }
     
-    private void RefershData() throws SQLException
+    public void UpdateNewData() throws ClassNotFoundException, SQLException
+    {
+        data.clear();
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
+        
+        Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                                            ResultSet.CONCUR_UPDATABLE);
+        
+        rs = st.executeQuery(query);
+        
+        while(rs.next())
+        {
+            for(int i = 1; i <= ColumnCount; i++)
+            {
+                data.add(rs.getObject(i));
+            }
+        }
+        RowCount = data.size() / ColumnCount;
+        
+        rs.beforeFirst();
+    }
+    
+    public void RefershData() throws SQLException
     {
         data.clear();
         while(rs.next())
@@ -234,5 +307,26 @@ public class DataTable {
         RowCount = data.size() / ColumnCount;
         
         rs.beforeFirst();
+    }
+    
+    public String toString(int row, String s[])
+    {
+      String s1 = "";
+      
+      Object r[] = this.getRow(row);
+      
+      for(int i = 0; i < r.length; i++)
+      {
+          s1 += s[i] + ": ";
+          s1 += r[i].toString();
+          
+          if(i < r.length - 1)
+          {
+              s1 += " - ";
+          }
+              
+      }
+      
+      return s1;
     }
 }
