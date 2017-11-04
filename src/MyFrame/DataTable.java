@@ -8,6 +8,7 @@ package MyFrame;
 import com.mysql.jdbc.Connection;
 import java.io.InputStream;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,13 +23,15 @@ public class DataTable {
     private ArrayList<Object> data;
     private int ColumnCount;
     private int RowCount;
-    private InputStream hinh[];
     private ResultSet rs;
+    private Connection con;
+    private Statement st;
     String query;
     String host;
     String db;
     String user;
     String pass;
+    boolean isUsingImage = false;
     
     String hostOnline = "sql12.freemysqlhosting.net";
     String dbOnline = "sql12202919";
@@ -37,7 +40,7 @@ public class DataTable {
     
     private static ArrayList<DataTable> ListInstanceDB = new ArrayList<>();
     
-    public DataTable(String host, String db, String table, int c, boolean using_image) throws ClassNotFoundException, SQLException
+    public DataTable(String host, String db, String table, int c) throws ClassNotFoundException, SQLException
     {
         data = new ArrayList<>();
         ColumnCount = c;
@@ -48,11 +51,11 @@ public class DataTable {
         this.pass = "";
         
         Class.forName("com.mysql.jdbc.Driver");
-        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
+        con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
         
         query = "Select * from " + table + ";";
         
-        Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+        st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                                             ResultSet.CONCUR_UPDATABLE);
         
         rs = st.executeQuery(query);
@@ -68,17 +71,6 @@ public class DataTable {
         
         RowCount = data.size() / c;
         
-        if(using_image)
-        {
-            hinh = new InputStream[RowCount];
-            int i = 0;
-            rs.beforeFirst();
-            while(rs.next())
-            {
-                hinh[i] = rs.getBinaryStream("hinh");
-                i++;
-            }
-        }
         rs.beforeFirst();
         ListInstanceDB.add(this);
     }
@@ -102,9 +94,9 @@ public class DataTable {
         this.pass = "";
         
         Class.forName("com.mysql.jdbc.Driver");
-        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
+        con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host + "/" + this.db, user, pass);
         
-        Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+        st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                                             ResultSet.CONCUR_UPDATABLE);
         
         rs = st.executeQuery(this.query);
@@ -117,6 +109,7 @@ public class DataTable {
             }
         }
         RowCount = data.size() / c;
+        
         
         rs.beforeFirst();
         ListInstanceDB.add(this);
@@ -172,9 +165,17 @@ public class DataTable {
         return RowCount;
     }
     
-    public InputStream getImage(int index)
+    public InputStream getImage(int index) throws SQLException
     {
-        return hinh[index];
+        int i = 0;
+        rs.beforeFirst();
+        while(rs.next())
+        {
+            if(index == i)
+            return rs.getBinaryStream("hinh");
+            i++;
+        }
+        return  null;
     }
     
     public boolean UpdateDataTable(int index_of_id, int row, Object newdata[]) throws SQLException
@@ -218,8 +219,18 @@ public class DataTable {
         
         rs.last();
         int id = 0;
-        if(RowCount > 0)
-        id = rs.getInt(index_of_id) + 1;
+        if(RowCount > 0 && index_of_id > 0)
+        {
+            id = rs.getInt(index_of_id) + 1;
+        }
+        
+        if(index_of_id == 0)
+        {
+            index_of_id = 0;
+            id = (int)newdata[index_of_id];
+            index_of_id+=1;
+        }
+            
         
         rs.moveToInsertRow();
         rs.updateInt(index_of_id, id);
@@ -265,6 +276,8 @@ public class DataTable {
     {
         for(int i = 0; i < ListInstanceDB.size(); i++)
         {
+            ListInstanceDB.get(i).con.close();
+            ListInstanceDB.get(i).st.close();
             ListInstanceDB.get(i).rs.close();
             ListInstanceDB.get(i).UpdateNewData();
         }
@@ -275,9 +288,9 @@ public class DataTable {
         data.clear();
         
         Class.forName("com.mysql.jdbc.Driver");
-        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
+        con= (Connection) DriverManager.getConnection("jdbc:mysql://" + this.host +"/" + this.db, user, pass);
         
-        Statement st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+        st = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                                             ResultSet.CONCUR_UPDATABLE);
         
         rs = st.executeQuery(query);
@@ -328,5 +341,20 @@ public class DataTable {
       }
       
       return s1;
+    }
+    
+    public static void UpdateModelTonKho(String host, String db, String user, String pass, int ID, int TonKho) throws ClassNotFoundException, SQLException
+    {
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection con= (Connection) DriverManager.getConnection("jdbc:mysql://" + host +"/" + db, user, pass);
+        String query = "Update model Set tonkho = ? where modelid = ?;";
+        PreparedStatement updateEXP = con.prepareStatement(query);
+        
+        updateEXP.setInt(1, TonKho);
+        updateEXP.setInt(2, ID);
+        updateEXP.executeUpdate();
+        
+        updateEXP.close();
+        con.close();
     }
 }

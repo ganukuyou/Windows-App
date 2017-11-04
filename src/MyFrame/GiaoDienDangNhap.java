@@ -3,6 +3,7 @@ package MyFrame;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Locale;
@@ -25,9 +26,11 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
     /**
      * Creates new form GiaoDienDangNhap
      */
-    public GiaoDienDangNhap() {
+    public GiaoDienDangNhap() throws ClassNotFoundException, SQLException {
         initComponents();
         centerFrame();
+        
+        NhanVienProfiles = new DataTable("localhost", "clock", "nhanvien", 6);
     }
 
     //ham thiet lap giao dien  giua man hinh
@@ -57,8 +60,8 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JPasswordField();
+        edtUser = new javax.swing.JTextField();
+        edtPass = new javax.swing.JPasswordField();
         btnDangNhap = new javax.swing.JButton();
         btnHuyBo = new javax.swing.JButton();
 
@@ -93,9 +96,15 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Mật khẩu:");
 
-        txtPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPasswordActionPerformed(evt);
+        edtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edtUserKeyPressed(evt);
+            }
+        });
+
+        edtPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                edtPassKeyPressed(evt);
             }
         });
 
@@ -139,8 +148,8 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
                         .addComponent(btnDangNhap)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnHuyBo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -155,10 +164,10 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,53 +207,17 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPasswordActionPerformed
-
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
 
-        if (txtUsername.getText().isEmpty() || String.valueOf(txtPassword.getPassword()).isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Tài Khoản Hoặc Mật Khẩu Không Được Để Trống", "Cảnh Báo", JOptionPane.OK_OPTION);
+        try {
+            Login();
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else
-        {
-            //Nhân viên kỹ thuật ký hiệu KT
-            //Nhân viên bán hàng ký hiệu BH
-            //Nhân viên kiểm kho ký hiệu KK
-            //Quản trị hệ thống ký hiệu QT
-            String LoaiNV = txtUsername.getText().substring(0, 2).toUpperCase();
-            String MaNV = txtUsername.getText();
-            
-            switch(LoaiNV)
-            {
-                case "BH": 
-                {
-                    try 
-                    {
-                        new GiaoDienNhanVien().setVisible(true);
-                        this.setVisible(false);
-                    } 
-                    catch (ClassNotFoundException ex) 
-                    {
-                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                    } 
-                    catch (SQLException ex)
-                    {
-                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                    } 
-                    catch (IOException ex) 
-                    {
-                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
-                    }break;
-                } 
-
-                case "KT": new GiaoDienKyThuat().setVisible(true); break;
-            }
-        }
-        
-        
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
@@ -260,6 +233,161 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnHuyBoMouseClicked
 
+    private void edtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtUserKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            try {
+                Login();
+            } catch (SQLException ex) {
+                Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_edtUserKeyPressed
+
+    private void edtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtPassKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            try {
+                Login();
+            } catch (SQLException ex) {
+                Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_edtPassKeyPressed
+
+    private void RefershInput()
+    {
+        edtUser.setText("");
+        edtPass.setText("");
+        edtUser.requestFocus();
+    }
+    
+    private void Login() throws SQLException, ClassNotFoundException, IOException
+    {
+        
+        if (edtUser.getText().isEmpty() || String.valueOf(edtPass.getPassword()).isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tài Khoản Hoặc Mật Khẩu Không Được Để Trống", "Cảnh Báo", JOptionPane.OK_OPTION);
+            return;
+        }
+        
+        
+
+        if (!CheckID()) 
+        {
+            JOptionPane.showMessageDialog(this, "Tài Khoản Không Hợp Lệ", "Thông báo", JOptionPane.OK_OPTION);
+            RefershInput();
+            return;
+        }
+
+        //Nhân viên kỹ thuật ký hiệu KT
+        //Nhân viên bán hàng ký hiệu BH
+        //Nhân viên kiểm kho ký hiệu QK
+        //Quản trị hệ thống ký hiệu QT
+        String LoaiNV = edtUser.getText().substring(0, 2).toUpperCase();
+        switch(LoaiNV)
+            {
+                case "BH": 
+                {
+                    try 
+                    {
+                        new GiaoDienNhanVien().setVisible(true);
+                        RefershInput();
+                        this.setVisible(false);
+                    } 
+                    catch (ClassNotFoundException ex) 
+                    {
+                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                    catch (SQLException ex)
+                    {
+                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                    catch (IOException ex) 
+                    {
+                        Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                } 
+                case "KT":
+                {
+                    new GiaoDienKyThuat().setVisible(true);
+                    RefershInput();
+                    this.setVisible(false);
+                    break;
+                }
+                case "QK":
+                {
+                    new GiaoDienQuanLyKho().setVisible(true);
+                    RefershInput();
+                    this.setVisible(false);
+                    break;
+                }
+                default:
+                {
+                    new GiaoDienQuanTri().setVisible(true);
+                    RefershInput();
+                    this.setVisible(false);
+                    break;
+                }
+            }
+    }
+    
+    private boolean CheckID()
+    {
+        String LoaiNV = edtUser.getText().substring(0, 2).toUpperCase();
+        String MaNV = edtUser.getText().substring(2);
+        String pass = String.valueOf(edtPass.getPassword());
+        int ma = 0;
+        try
+        {
+            ma = Integer.parseInt(MaNV);
+            
+        }
+        catch(NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(this, "Tài Khoản Không Hợp Lệ", "Thông báo", JOptionPane.OK_OPTION);
+            RefershInput();
+            return false;
+        }
+        
+        boolean Log = false;
+        for(int i = 0; i < NhanVienProfiles.getRowCount(); i++)
+        {
+            Object data[] = NhanVienProfiles.getRow(i);
+            int maRef = Integer.parseInt(data[0].toString());
+            if(maRef == ma)
+            {
+                String cv = data[5].toString().toUpperCase();
+                if(cv.equals(LoaiNV))
+                {
+                    
+                    if(data[4].toString().equals(pass))
+                    {
+                        Log = true;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        return Log;
+    }
+    
+    public int getIDNhanVien()
+    {
+        return IDNhanVien;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -290,21 +418,30 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GiaoDienDangNhap().setVisible(true);
+                try {
+                    new GiaoDienDangNhap().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(GiaoDienDangNhap.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
+    
+    private DataTable NhanVienProfiles;
+    private int IDNhanVien = -1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnHuyBo;
+    private javax.swing.JPasswordField edtPass;
+    private javax.swing.JTextField edtUser;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,10 +24,10 @@ import javax.swing.JFrame;
  *
  * @author LOI LOI
  */
-public class GiaiDienQuanLyKho extends javax.swing.JFrame {
+public class GiaoDienQuanLyKho extends javax.swing.JFrame {
 
     /**
-     * Creates new form GiaiDienQuanLyKho
+     * Creates new form GiaoDienQuanLyKho
      */
     
       //khai bao cac layout
@@ -39,7 +39,7 @@ public class GiaiDienQuanLyKho extends javax.swing.JFrame {
     
     
     
-    public GiaiDienQuanLyKho() throws SQLException {
+    public GiaoDienQuanLyKho() throws SQLException {
         initComponents();
         centerFrame();
         //goi ham set vi tri layout
@@ -48,7 +48,7 @@ public class GiaiDienQuanLyKho extends javax.swing.JFrame {
         try {
             panelDanhMucSanPham_SanPham=new panelDanhMucSanPham_SanPham();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GiaiDienQuanLyKho.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GiaoDienQuanLyKho.class.getName()).log(Level.SEVERE, null, ex);
         }
         panelTrangChuThayThe.setLayout(layout);
         //Gan Panel vao layout
@@ -97,9 +97,7 @@ public class GiaiDienQuanLyKho extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1030, 662));
         setMinimumSize(new java.awt.Dimension(1030, 662));
-        setPreferredSize(new java.awt.Dimension(1050, 662));
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 51));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -265,7 +263,7 @@ public class GiaiDienQuanLyKho extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnBaoCaoHangTonKho, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(btnQuanLySanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(panelTrangChuThayThe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9))
         );
@@ -293,7 +291,7 @@ public class GiaiDienQuanLyKho extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,23 +366,24 @@ public class GiaiDienQuanLyKho extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GiaiDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiaoDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GiaiDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiaoDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GiaiDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiaoDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GiaiDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GiaoDienQuanLyKho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GiaiDienQuanLyKho().setVisible(true);
+                    new GiaoDienQuanLyKho().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(GiaiDienQuanLyKho.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GiaoDienQuanLyKho.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

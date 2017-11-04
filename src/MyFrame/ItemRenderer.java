@@ -20,7 +20,7 @@ import javax.swing.ListCellRenderer;
  *
  * @author Thanh Thu
  */
-public class ItemRenderer extends JPanel implements ListCellRenderer<DongHo> {
+public class ItemRenderer extends JPanel implements ListCellRenderer<Model> {
 
     private JLabel lblIcon = new JLabel();
     private JLabel lblGia = new JLabel();
@@ -39,16 +39,16 @@ public class ItemRenderer extends JPanel implements ListCellRenderer<DongHo> {
     }
 
     @Override
-    public Component getListCellRendererComponent(JList<? extends DongHo> jlist, DongHo e, int i, boolean bln, boolean bln1)
+    public Component getListCellRendererComponent(JList<? extends Model> jlist, Model e, int i, boolean bln, boolean bln1)
     {
         lblContent.setText(e.getContent());
         lblGia.setText(String.valueOf(e.getGia()));
         
         ImageIcon icon = new ImageIcon(e.getIcon());
         
-        Image new_image = icon.getImage();
-        new_image = new_image.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
-        //icon.setImage(new_image);
+        Image img = icon.getImage() ;
+        Image newimg = img.getScaledInstance( 75, 75,  java.awt.Image.SCALE_SMOOTH ) ;  
+        icon = new ImageIcon( newimg );
         
         lblContent.setIcon(icon);
         return this;

@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 
 public class GiaoDienNhanVien extends javax.swing.JFrame {
@@ -50,7 +52,7 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
         grid.gridy=0;
         panelTrangChuThayThe.add(panelThongKeDoanhSo,grid);
         //Cai dat hien thi cho panel
-        panDanhMucSanPham_BanHang.setVisible(true);//layout mac dinh khi khoi dong he thong
+        panDanhMucSanPham_BanHang.setVisibleAndLoadData(true);//layout mac dinh khi khoi dong he thong
         panelLichSuBanHang.setVisible(false);
         panelQuanLyKhachHang.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
@@ -110,7 +112,7 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Bán hàng");
+        jLabel2.setText("Bán Hàng");
         btnBanHang.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Kho.png"))); // NOI18N
@@ -337,7 +339,13 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
         btnThongTinKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
         btnDangXuat.setBackground(Color.decode("#003333"));
-        panDanhMucSanPham_BanHang.setVisible(true);
+        try {
+            panDanhMucSanPham_BanHang.setVisibleAndLoadData(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GiaoDienNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         panelLichSuBanHang.setVisible(false);
         panelQuanLyKhachHang.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
@@ -379,7 +387,13 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
         panDanhMucSanPham_BanHang.setVisible(false);
         panelLichSuBanHang.setVisible(false);
         panelQuanLyKhachHang.setVisible(false);
-        panelThongKeDoanhSo.setVisible(true);//Cho phen hien thi panel thong ke doanh so
+        try {
+            panelThongKeDoanhSo.setVisibleAndLoadData(true);//Cho phen hien thi panel thong ke doanh so
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GiaoDienNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnThongKeDoanhSoMouseClicked
 
     private void btnDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangXuatMouseClicked
@@ -389,6 +403,10 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
         btnThongTinKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
         btnDangXuat.setBackground(Color.decode("#55a996"));
+        
+        JFrame.getFrames()[0].setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btnDangXuatMouseClicked
 
   
