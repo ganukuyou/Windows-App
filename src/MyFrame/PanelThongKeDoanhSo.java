@@ -59,6 +59,14 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
          }
     }
     
+    void setVisibleAndLoadData(boolean b) throws ClassNotFoundException, SQLException
+    {
+        if(!b)
+            return;
+        
+        this.setVisible(b);
+        NapDuLieuThongKeTheoNgayDenLuuDo();
+    }
     
     //Nạp dữ liệu thống kê đến JTable
     private void NapDuLieuThongKe(DataTable dt)

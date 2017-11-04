@@ -25,7 +25,7 @@ public class PanelQuanLyKhachHang extends javax.swing.JPanel {
     public PanelQuanLyKhachHang() throws ClassNotFoundException, SQLException {
         initComponents();
         
-        KHTable = new DataTable("localhost", "clock", "khachhang", 4, false);
+        KHTable = new DataTable("localhost", "clock", "khachhang", 4);
         
         pQuanLyKhachHang_DanhSach=new panelQuanLyKhachHang_DanhSach();
         pQuanLyKhachHang_ChinhSuaThemMoi=new panelQuanLyKhachHang_ChinhSuaThemMoi();

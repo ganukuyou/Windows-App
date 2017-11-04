@@ -87,7 +87,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         panelTiepNhanBaoHanh.setVisible(false);
         panelLichSuBaoHanh.setVisible(false);
         panelQuanLyNhanVien.setVisible(false);
-        panelDanhMucSanPham_SanPham.setVisible(true);
+        panelDanhMucSanPham_SanPham.setVisibleAndLoadData(true);
         
          btnQuanLySanPham.setBackground(Color.decode("#55a996"));
          
@@ -579,7 +579,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
        
         panelLichSuBanHang.setVisible(false);
-        panelDanhMucSanPham_SanPham.setVisible(true);
+        panelDanhMucSanPham_SanPham.setVisibleAndLoadData(true);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(false);
         panelQuanLyHangTonKho.setVisible(false);
@@ -809,7 +809,13 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         panelTiepNhanBaoHanh.setVisible(false);
         panelQuanLyKhachHang.setVisible(false);
         panelLichSuBaoHanh.setVisible(false);
-        panelQuanLyNhanVien.setVisible(true);
+        try {
+            panelQuanLyNhanVien.setVisibleAndLoadData(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GiaoDienQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnQuanLyNhanVienMouseClicked
 
   

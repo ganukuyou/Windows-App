@@ -5,6 +5,9 @@
  */
 package MyFrame;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 /**
  *
  * @author Thanh Thu
@@ -27,89 +30,210 @@ public class PanelChiTietSanPham extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblNameDH = new javax.swing.JLabel();
+        lblNPP = new javax.swing.JLabel();
+        lblCLModel = new javax.swing.JLabel();
+        lblLoaiModel = new javax.swing.JLabel();
+        lblBH = new javax.swing.JLabel();
+        lblGia = new javax.swing.JLabel();
+        lblTonKhoModel = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
+        lblTonKhoModel1 = new javax.swing.JLabel();
+        cmbSeri = new javax.swing.JComboBox<>();
+        lblNSX = new javax.swing.JLabel();
+        lblPin = new javax.swing.JLabel();
+        lblSize = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(500, 300));
         setMinimumSize(new java.awt.Dimension(500, 300));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(161, 183));
-        jPanel1.setMinimumSize(new java.awt.Dimension(161, 183));
+        lblNameDH.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblNameDH.setText("Thông Tin Chi Tiết");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 161, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 183, Short.MAX_VALUE)
-        );
+        lblNPP.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblNPP.setText("Nhà Phân Phối:");
 
-        jLabel1.setText("Tên đồng hồ");
+        lblCLModel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblCLModel.setText("Chất Liệu:");
 
-        jLabel2.setText("Tên model");
+        lblLoaiModel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblLoaiModel.setText("Loại:");
 
-        jLabel3.setText("Số seri");
+        lblBH.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblBH.setText("Bảo Hành:");
 
-        jLabel4.setText("số lượng còn lại");
+        lblGia.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblGia.setText("Giá:");
 
-        jLabel5.setText("Giá bán : 0000 VND");
+        lblTonKhoModel.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblTonKhoModel.setText("Số Lượng Còn Trong Kho:");
+
+        lblID.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblID.setText("Mã:");
+
+        lblTonKhoModel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblTonKhoModel1.setText("Seri:");
+
+        cmbSeri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSeriActionPerformed(evt);
+            }
+        });
+
+        lblNSX.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblNSX.setText("Nhà Sản Xuất:");
+
+        lblPin.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblPin.setText("Pin:");
+
+        lblSize.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lblSize.setText("Size:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(131, 131, 131)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblTonKhoModel1)
+                            .addGap(18, 18, 18)
+                            .addComponent(cmbSeri, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblNPP)
+                        .addComponent(lblCLModel)
+                        .addComponent(lblBH)
+                        .addComponent(lblGia)
+                        .addComponent(lblTonKhoModel)
+                        .addComponent(lblID)
+                        .addComponent(lblLoaiModel)
+                        .addComponent(lblNSX)
+                        .addComponent(lblPin)
+                        .addComponent(lblSize))
+                    .addComponent(lblNameDH))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel2)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel3)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel4)
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel5))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblNameDH)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTonKhoModel1)
+                    .addComponent(cmbSeri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblID)
+                .addGap(18, 18, 18)
+                .addComponent(lblNSX)
+                .addGap(18, 18, 18)
+                .addComponent(lblNPP)
+                .addGap(13, 13, 13)
+                .addComponent(lblLoaiModel)
+                .addGap(18, 18, 18)
+                .addComponent(lblCLModel)
+                .addGap(18, 18, 18)
+                .addComponent(lblPin)
+                .addGap(18, 18, 18)
+                .addComponent(lblSize)
+                .addGap(18, 18, 18)
+                .addComponent(lblBH)
+                .addGap(18, 18, 18)
+                .addComponent(lblGia)
+                .addGap(18, 18, 18)
+                .addComponent(lblTonKhoModel)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbSeriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSeriActionPerformed
+        // TODO add your handling code here:
+        SeriSelected = cmbSeri.getSelectedIndex();
+    }//GEN-LAST:event_cmbSeriActionPerformed
 
+    public void setDuLieuHienThi(Object dataLabel[], Object seribo[]) throws IOException, ClassNotFoundException, SQLException
+    {
+        //Khoi tạo hiển thị thông tin model
+       lblID.setText(s1 + dataLabel[0].toString());
+       lblNSX.setText(s2 + dataLabel[1].toString());
+       lblNPP.setText(s3 + dataLabel[2].toString());
+       lblLoaiModel.setText(s4 + dataLabel[3].toString());
+       lblCLModel.setText(s5 + dataLabel[4].toString());
+       lblPin.setText(s6 + dataLabel[5].toString());
+       lblSize.setText(s7 + dataLabel[6].toString());
+       lblBH.setText(s8 + dataLabel[7].toString());
+       lblGia.setText(s9 + dataLabel[9].toString());
+       lblTonKhoModel.setText(s10 + dataLabel[10].toString());
+       
+       String query = "select seri from dongho where modelid = '" + dataLabel[0] +"' and seri not in (select seri from chitiethd);";
+       SeriChuaBanProfiles = new DataTable("localhost", "clock", 1, query);
+       
+       Object data[] = SeriChuaBanProfiles.getColumn(0);
+       cmbSeri.removeAllItems();
+       
+       //Duyệt và đưa seri item vào combobox
+       for(Object o : data)
+       {
+           //Kiểm tra loại bỏ seri đã đc đưa vào đơn hàng tạm thời
+           boolean b = false;
+           for(Object o2 : seribo)
+           {
+               int dh = ((DongHo)o2).getSeri();
+               int a = Integer.valueOf(o.toString());
+               if(dh == a)
+               {
+                   b = true;
+                   break;
+               }
+               
+           }
+           if(!b)
+           {
+               cmbSeri.addItem(o.toString());
+           }
+           
+       }
+    }
+    
+    public int getSelected()
+    {
+        return SeriSelected; 
+    }
+    
+    public String getSelectedItem()
+    {
+        return cmbSeri.getItemAt(SeriSelected);
+    }
+    
+    private String s1 = "Mã: ";
+    private String s2 = "Nhà Sản Xuất: ";
+    private String s3 = "Nhà Phân Phối: ";
+    private String s4 = "Loại: ";
+    private String s5 = "Chất Liệu: ";
+    private String s6 = "Pin: ";
+    private String s7 = "Size: ";
+    private String s8 = "Bảo Hành: ";
+    private String s9 = "Giá: ";
+    private String s10 = "Số Lượng Còn Lại: ";
+    private DataTable SeriChuaBanProfiles;
+    
+    private int SeriSelected = -1;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> cmbSeri;
+    private javax.swing.JLabel lblBH;
+    private javax.swing.JLabel lblCLModel;
+    private javax.swing.JLabel lblGia;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblLoaiModel;
+    private javax.swing.JLabel lblNPP;
+    private javax.swing.JLabel lblNSX;
+    private javax.swing.JLabel lblNameDH;
+    private javax.swing.JLabel lblPin;
+    private javax.swing.JLabel lblSize;
+    private javax.swing.JLabel lblTonKhoModel;
+    private javax.swing.JLabel lblTonKhoModel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -2175,15 +2175,15 @@ public class panelDanhMucSanPham_SanPham extends javax.swing.JPanel {
                 "join pin on model.id_pin = pin.id_pin;";
         ModelProfiles = new DataTable("localhost", "clock", 10, query);
         
-        PinProfiles = new DataTable("localhost", "clock", "pin", 4, false);
+        PinProfiles = new DataTable("localhost", "clock", "pin", 4);
         
-        LoaiProfiles = new DataTable("localhost", "clock", "loai", 2, false);
+        LoaiProfiles = new DataTable("localhost", "clock", "loai", 2);
         
-        NSXProfiles = new DataTable("localhost", "clock", "nsx", 2, false);
+        NSXProfiles = new DataTable("localhost", "clock", "nsx", 2);
         
-        NPPProfiles = new DataTable("localhost", "clock", "npp", 2, false);
+        NPPProfiles = new DataTable("localhost", "clock", "npp", 2);
         
-        ChatLieuProfiles = new DataTable("localhost", "clock", "chat_lieu", 2, false);
+        ChatLieuProfiles = new DataTable("localhost", "clock", "chat_lieu", 2);
     }
     
     public void setVisibleAndLoadData(boolean v)

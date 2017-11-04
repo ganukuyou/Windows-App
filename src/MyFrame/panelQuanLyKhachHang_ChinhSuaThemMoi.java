@@ -22,7 +22,7 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
      */
     public panelQuanLyKhachHang_ChinhSuaThemMoi() throws ClassNotFoundException, SQLException {
         initComponents();
-        KhachHangProfiles = new  DataTable("localhost", "clock", "khachhang", 4, false);
+        KhachHangProfiles = new  DataTable("localhost", "clock", "khachhang", 4);
     }
 
     /**

@@ -74,11 +74,11 @@ public class PanelBaoCaoHangTonKho_BaoCao extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Tên Hàng", "Số Hiệu", "SL Tồn Đầu", "GT Tồn Đầu", "SL Nhập Kho", "GT Nhập Kho", "SL Xuất Kho", "GT Xuất Kho", "SL Tồn Cuối", "GT Tồn Cuối"
+                "STT", "Tên Hàng", "Số Hiệu", "SL Tồn Đầu", "GT Tồn Đầu", "SL Nhập Kho", "GT Nhập Kho", "SL Xuất Kho", "GT Xuất Kho", "SL Tồn Cuối", "Title 11"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
