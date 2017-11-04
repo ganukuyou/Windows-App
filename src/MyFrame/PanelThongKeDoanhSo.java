@@ -13,7 +13,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.layout.Border;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -60,6 +59,14 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
          }
     }
     
+    void setVisibleAndLoadData(boolean b) throws ClassNotFoundException, SQLException
+    {
+        if(!b)
+            return;
+        
+        this.setVisible(b);
+        NapDuLieuThongKeTheoNgayDenLuuDo();
+    }
     
     //Nạp dữ liệu thống kê đến JTable
     private void NapDuLieuThongKe(DataTable dt)

@@ -21,7 +21,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
     //khai bao cac layout
     GridBagLayout layout=new GridBagLayout();
     PaneLichSuBanHang panelLichSuBanHang;
-    PanelDanhMucSanPham panelDanhMucSanPham;
+    panelDanhMucSanPham_SanPham panelDanhMucSanPham_SanPham;
     PanelQuanLyKhachHang panelQuanLyKhachHang;
     PanelThongKeDoanhSo panelThongKeDoanhSo;
     PanelTiepNhanBaoHanh panelTiepNhanBaoHanh;
@@ -36,7 +36,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
     public GiaoDienQuanTri() throws ClassNotFoundException, SQLException, IOException{
         initComponents();
         centerFrame();//goi ham set vi tri layout
-        panelDanhMucSanPham=new PanelDanhMucSanPham();
+        panelDanhMucSanPham_SanPham=new panelDanhMucSanPham_SanPham();
         panelQuanLyKhachHang=new PanelQuanLyKhachHang();
         panelLichSuBanHang=new PaneLichSuBanHang();
         panelThongKeDoanhSo=new PanelThongKeDoanhSo();
@@ -49,12 +49,13 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         panelThayThe.setLayout(layout);
         //Gan Panel vao layout
         GridBagConstraints grid=new GridBagConstraints();
-        grid.gridx=0;
-        grid.gridy=0;
-        panelThayThe.add(panelDanhMucSanPham,grid);
+        
         grid.gridx=0;
         grid.gridy=0;
         panelThayThe.add(panelQuanLyKhachHang,grid);
+        grid.gridx=0;
+        grid.gridy=0;
+        panelThayThe.add(panelDanhMucSanPham_SanPham,grid);
         grid.gridx=0;
         grid.gridy=0;
         panelThayThe.add(panelLichSuBanHang,grid);
@@ -77,8 +78,8 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         grid.gridy=0;
         panelThayThe.add(panelQuanLyNhanVien,grid);
         //Cai dat hien thi cho panel
-        panelDanhMucSanPham.setVisible(true);//layout mac dinh khi khoi dong he thong
-        panelLichSuBanHang.setVisible(false);
+       //layout mac dinh khi khoi dong he thong
+        panelLichSuBanHang.setVisible(true);
         panelQuanLyKhachHang.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(false);
@@ -86,8 +87,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         panelTiepNhanBaoHanh.setVisible(false);
         panelLichSuBaoHanh.setVisible(false);
         panelQuanLyNhanVien.setVisible(false);
+        panelDanhMucSanPham_SanPham.setVisibleAndLoadData(true);
         
-         btnDanhMucSanPham.setBackground(Color.decode("#55a996"));
+         btnQuanLySanPham.setBackground(Color.decode("#55a996"));
          
         
         
@@ -100,7 +102,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         panelThayThe = new javax.swing.JPanel();
-        btnDanhMucSanPham = new javax.swing.JPanel();
+        btnQuanLySanPham = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnQuanLyKhachHang = new javax.swing.JPanel();
@@ -147,21 +149,21 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         panelThayThe.setMinimumSize(new java.awt.Dimension(767, 662));
         panelThayThe.setPreferredSize(new java.awt.Dimension(767, 662));
 
-        btnDanhMucSanPham.setBackground(new java.awt.Color(0, 51, 51));
-        btnDanhMucSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnQuanLySanPham.setBackground(new java.awt.Color(0, 51, 51));
+        btnQuanLySanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDanhMucSanPhamMouseClicked(evt);
+                btnQuanLySanPhamMouseClicked(evt);
             }
         });
-        btnDanhMucSanPham.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnQuanLySanPham.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Danh Mục Sản Phẩm");
-        btnDanhMucSanPham.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
+        jLabel2.setText("Quản Lý Sản Phẩm");
+        btnQuanLySanPham.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/010-technology.png"))); // NOI18N
-        btnDanhMucSanPham.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        btnQuanLySanPham.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         btnQuanLyKhachHang.setBackground(new java.awt.Color(0, 51, 51));
         btnQuanLyKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -493,7 +495,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThongKeDoanhSo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDanhMucSanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuanLySanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBaoCaoHangTonKho, javax.swing.GroupLayout.PREFERRED_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(btnDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLichSuBanhang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -522,7 +524,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btnDanhMucSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnQuanLySanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnQuanLyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -562,9 +564,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
     }
     
     
-    private void btnDanhMucSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDanhMucSanPhamMouseClicked
+    private void btnQuanLySanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQuanLySanPhamMouseClicked
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#55a996"));
+        btnQuanLySanPham.setBackground(Color.decode("#55a996"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -575,9 +577,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(true);
+       
         panelLichSuBanHang.setVisible(false);
-        
+        panelDanhMucSanPham_SanPham.setVisibleAndLoadData(true);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(false);
         panelQuanLyHangTonKho.setVisible(false);
@@ -587,11 +589,11 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         panelQuanLyNhanVien.setVisible(false);
         
         
-    }//GEN-LAST:event_btnDanhMucSanPhamMouseClicked
+    }//GEN-LAST:event_btnQuanLySanPhamMouseClicked
 
     private void btnQuanLyKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQuanLyKhachHangMouseClicked
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#55a996"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -602,7 +604,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(false);
+        panelDanhMucSanPham_SanPham.setVisible(false);
         panelLichSuBanHang.setVisible(false);
         panelQuanLyKhachHang.setVisible(true);
         panelThongKeDoanhSo.setVisible(false);
@@ -616,7 +618,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
 
     private void btnLichSuBanhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLichSuBanhangMouseClicked
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#55a996"));
@@ -627,9 +629,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(false);
+       
         panelLichSuBanHang.setVisible(true);
-        
+        panelDanhMucSanPham_SanPham.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(false);
         panelQuanLyHangTonKho.setVisible(false);
@@ -641,7 +643,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
 
     private void btnThongKeDoanhSoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongKeDoanhSoMouseClicked
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#55a996"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -652,9 +654,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(false);
-        panelLichSuBanHang.setVisible(false);
        
+        panelLichSuBanHang.setVisible(false);
+       panelDanhMucSanPham_SanPham.setVisible(false);
         panelThongKeDoanhSo.setVisible(true);
         panelBaoCaoHangTonKho.setVisible(false);
         panelQuanLyHangTonKho.setVisible(false);
@@ -665,7 +667,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThongKeDoanhSoMouseClicked
 
     private void btnDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangXuatMouseClicked
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -682,7 +684,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         // cai dat su kien hien thi cho nut Lich Su Bao Hanh
 
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -693,9 +695,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(false);
-        panelLichSuBanHang.setVisible(false);
        
+        panelLichSuBanHang.setVisible(false);
+        panelDanhMucSanPham_SanPham.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(false);
         panelQuanLyHangTonKho.setVisible(false);
@@ -709,7 +711,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         // cai dat su kien hien thi cho nut TiepNhanbaoHanh
 
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -720,9 +722,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(false);
+       
         panelLichSuBanHang.setVisible(false);
-        
+        panelDanhMucSanPham_SanPham.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(false);
         panelQuanLyHangTonKho.setVisible(false);
@@ -734,7 +736,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
 
     private void btnQuanLyHangTonKhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQuanLyHangTonKhoMouseClicked
        // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -745,9 +747,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#55a996"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(false);
+       
         panelLichSuBanHang.setVisible(false);
-      
+      panelDanhMucSanPham_SanPham.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(false);
         panelQuanLyHangTonKho.setVisible(true);
@@ -761,7 +763,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
 
     private void btnBaoCaoHangTonKhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBaoCaoHangTonKhoMouseClicked
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -772,9 +774,9 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#55a996"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
-        panelDanhMucSanPham.setVisible(false);
+     
         panelLichSuBanHang.setVisible(false);
-       
+       panelDanhMucSanPham_SanPham.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
         panelBaoCaoHangTonKho.setVisible(true);
         panelQuanLyHangTonKho.setVisible(false);
@@ -787,7 +789,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
 
     private void btnQuanLyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQuanLyNhanVienMouseClicked
         // Cai dat hien thi layout va mau sac tuong ung
-        btnDanhMucSanPham.setBackground(Color.decode("#003333"));
+        btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnThongKeDoanhSo.setBackground(Color.decode("#003333"));
         btnQuanLyKhachHang.setBackground(Color.decode("#003333"));
         btnLichSuBanhang.setBackground(Color.decode("#003333"));
@@ -798,7 +800,7 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
         btnQuanLyNhanVien.setBackground(Color.decode("#55a996"));
-        panelDanhMucSanPham.setVisible(false);
+       panelDanhMucSanPham_SanPham.setVisible(false);
         panelLichSuBanHang.setVisible(false);
         panelQuanLyKhachHang.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
@@ -807,7 +809,13 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         panelTiepNhanBaoHanh.setVisible(false);
         panelQuanLyKhachHang.setVisible(false);
         panelLichSuBaoHanh.setVisible(false);
-        panelQuanLyNhanVien.setVisible(true);
+        try {
+            panelQuanLyNhanVien.setVisibleAndLoadData(true);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GiaoDienQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnQuanLyNhanVienMouseClicked
 
   
@@ -831,12 +839,12 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel btnBaoCaoHangTonKho;
     private javax.swing.JPanel btnDangXuat;
-    private javax.swing.JPanel btnDanhMucSanPham;
     private javax.swing.JPanel btnLichSuBanhang;
     private javax.swing.JPanel btnLichSuBaoHanh;
     private javax.swing.JPanel btnQuanLyHangTonKho;
     private javax.swing.JPanel btnQuanLyKhachHang;
     private javax.swing.JPanel btnQuanLyNhanVien;
+    private javax.swing.JPanel btnQuanLySanPham;
     private javax.swing.JPanel btnThongKeDoanhSo;
     private javax.swing.JPanel btnTiepNhanBaoHanh;
     private javax.swing.JLabel jLabel1;

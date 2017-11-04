@@ -5,55 +5,31 @@
  */
 package MyFrame;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Blob;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
-
 /**
  *
- * @author Thanh Thu
+ * @author ganukuyou
  */
-public class DongHo{
-    int gia;
-    String mieuta;
-    BufferedImage hinh;
-    public DongHo(Object[] o, InputStream hinh) throws SQLException, IOException
-    {
-        this.gia = (int)o[4];
-        this.mieuta = o[5].toString();
-        this.hinh = ImageIO.read(hinh);
+public class DongHo
+{
+
+    public int getIdmodel() {
+        return idmodel;
+    }
+
+    public int getSeri() {
+        return seri;
+    }
+
+    public DongHo(int idmodel, int seri) {
+        this.idmodel = idmodel;
+        this.seri = seri;
     }
     
-    int getGia()
-    {
-        return gia;
-    }
-    
-    String getContent()
-    {
-        return mieuta;
-    }
-    
-    BufferedImage getIcon()
-    {
-        return hinh;
-    }
-    
-    @Override
     public String toString()
     {
-        return mieuta + "-" + String.valueOf(gia) + " (VND)";
-    }    
+        return"Model: " +  String.valueOf(idmodel) + " - Seri: " +  String.valueOf(seri);
+    }
+    
+    private int idmodel, seri;
+    
 }

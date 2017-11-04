@@ -5,6 +5,9 @@
  */
 package MyFrame;
 
+import java.sql.SQLException;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Thanh Thu
@@ -14,13 +17,16 @@ public class panelDanhMucSanPham_KhoHang extends javax.swing.JPanel {
     /**
      * Creates new form panelDanhMucSanPham
      */
-    public panelDanhMucSanPham_KhoHang() {
+    public panelDanhMucSanPham_KhoHang() throws ClassNotFoundException, SQLException {
         initComponents();
+        LoadDB();
     }
 
-    void LoadDB()
+    void LoadDB() throws ClassNotFoundException, SQLException
     {
-        //dtSanPham = new DataTable("localhost", "clock", TOOL_TIP_TEXT_KEY, WIDTH)
+        String query = "Select model.modelid, model.dacdiem, model.tonkho from model;";
+        SanPhamProfiles = new DataTable("localhost", "clock", 3, query);
+        LoadDataTableToList();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,12 +38,13 @@ public class panelDanhMucSanPham_KhoHang extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
+        edtSearch = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lsvSanPham = new javax.swing.JList<>();
 
+        setBackground(new java.awt.Color(85, 169, 150));
         setMaximumSize(new java.awt.Dimension(741, 550));
         setMinimumSize(new java.awt.Dimension(741, 550));
         setPreferredSize(new java.awt.Dimension(741, 550));
@@ -75,7 +82,7 @@ public class panelDanhMucSanPham_KhoHang extends javax.swing.JPanel {
                 .addGap(107, 107, 107)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(edtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel9)
                 .addContainerGap(122, Short.MAX_VALUE))
@@ -92,7 +99,7 @@ public class panelDanhMucSanPham_KhoHang extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(edtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel9)))
@@ -102,14 +109,28 @@ public class panelDanhMucSanPham_KhoHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
-    DataTable dtSanPham;
+    
+    private void LoadDataTableToList()
+    {
+        lsvSanPham.removeAll();
+        
+        DefaultListModel<String> t = new DefaultListModel();
+        
+        String s[] = {"Mã Hàng", "Đặc Điểm", "Lượng Tồn Kho(cái)"};
+        for(int i = 0; i < SanPhamProfiles.getRowCount(); i++)
+        {
+            t.addElement(SanPhamProfiles.toString(i, s));
+        }
+        lsvSanPham.setModel(t);
+    }
+    
+    DataTable SanPhamProfiles;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField edtSearch;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JList<String> lsvSanPham;
     // End of variables declaration//GEN-END:variables
 }

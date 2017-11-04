@@ -5,6 +5,10 @@
  */
 package MyFrame;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,8 +20,9 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
     /**
      * Creates new form panelDanhMucSanPham
      */
-    public panelQuanLyKhachHang_ChinhSuaThemMoi() {
+    public panelQuanLyKhachHang_ChinhSuaThemMoi() throws ClassNotFoundException, SQLException {
         initComponents();
+        KhachHangProfiles = new  DataTable("localhost", "clock", "khachhang", 4);
     }
 
     /**
@@ -35,17 +40,17 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        edtNameKH = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        edtAddKH = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        edtPNumberKH = new javax.swing.JTextField();
+        btnAddKH = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(85, 169, 150));
         setMaximumSize(new java.awt.Dimension(741, 550));
@@ -67,14 +72,42 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
             new String [] {
                 "Mã Khách Hàng", "Tên Khách Hàng", "Địa Chỉ", "Số Điện Thoại"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhachHangMouseClicked(evt);
+            }
+        });
+        tblKhachHang.addVetoableChangeListener(new java.beans.VetoableChangeListener() {
+            public void vetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {
+                tblKhachHangVetoableChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblKhachHang);
 
-        jButton1.setBackground(new java.awt.Color(85, 169, 150));
-        jButton1.setText("Chỉnh Sữa");
+        btnEdit.setBackground(new java.awt.Color(85, 169, 150));
+        btnEdit.setText("Chỉnh Sửa");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(85, 169, 150));
-        jButton2.setText("Lưu");
+        btnDel.setBackground(new java.awt.Color(85, 169, 150));
+        btnDel.setText("Xóa");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -93,10 +126,10 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,9 +142,9 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jButton1)
+                        .addComponent(btnEdit)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton2)
+                        .addComponent(btnDel)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -127,21 +160,31 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
 
         jLabel3.setText("Tên khách hàng :");
 
-        jTextField2.setText("jTextField2");
-
         jLabel4.setText("Địa Chỉ :");
-
-        jTextField3.setText("jTextField3");
 
         jLabel5.setText("Số điện thoại");
 
-        jTextField4.setText("jTextField4");
+        edtPNumberKH.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                edtPNumberKHKeyTyped(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(85, 169, 150));
-        jButton3.setText("Thêm Khách Hàng");
+        btnAddKH.setBackground(new java.awt.Color(85, 169, 150));
+        btnAddKH.setText("Thêm Khách Hàng");
+        btnAddKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddKHActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(85, 169, 150));
-        jButton4.setText("Hủy");
+        btnCancel.setBackground(new java.awt.Color(85, 169, 150));
+        btnCancel.setText("Hủy");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -157,14 +200,14 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
                             .addComponent(jLabel5))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField4)))
+                            .addComponent(edtAddKH, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                            .addComponent(edtNameKH)
+                            .addComponent(edtPNumberKH)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAddKH, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -173,19 +216,19 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtNameKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(edtAddKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edtPNumberKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnAddKH)
+                    .addComponent(btnCancel))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
@@ -210,26 +253,185 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
                 .addContainerGap(96, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void edtPNumberKHKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtPNumberKHKeyTyped
+        // TODO add your handling code here:
+        if(evt.getKeyChar() < '0' || evt.getKeyChar() > '9' || edtPNumberKH.getText().length() >= 11)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_edtPNumberKHKeyTyped
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        if(!TurnedEditMode)
+        {
+            RefershTexField();
+        }
+        else
+        {
+            RefershTexField();
+            setEditMode(false);
+        }
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnAddKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddKHActionPerformed
+        // TODO add your handling code here:
+        if(edtNameKH.getText().isEmpty() || edtAddKH.getText().isEmpty() || edtPNumberKH.getText().isEmpty())
+        {
+            String mess = "Không được để trống tên, địa chỉ hoặc số điện thoại khách hàng";
+            
+            JOptionPane.showMessageDialog(this, mess, "Thông Báo", JOptionPane.OK_OPTION);
+            edtNameKH.requestFocus();
+            return;
+        }
+        
+        Object data[] = new Object[4];
+        data[1] = edtNameKH.getText();
+        data[2] = edtAddKH.getText();
+        data[3] = edtPNumberKH.getText();
+        
+        try 
+        {    
+            if(!TurnedEditMode)
+            {
+                KhachHangProfiles.InsertDataTable(0, data);
+                this.setVisibleAndLoadData(true);
+                DataTable.UpdateAllInstance();
+                RefershTexField();
+            }
+            else
+            {
+                KhachHangProfiles.UpdateDataTable(0, IndexRowSelected, data);
+                this.setVisibleAndLoadData(true);
+                DataTable.UpdateAllInstance();
+                setEditMode(false);
+            }
+        } 
+        catch (SQLException ex)
+        {
+            Logger.getLogger(panelQuanLyKhachHang_ChinhSuaThemMoi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(panelQuanLyKhachHang_ChinhSuaThemMoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAddKHActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        // TODO add your handling code here:
+        
+        if(tblKhachHang.getSelectedRowCount() < 1)
+        {
+            String mess = "Vui lòng chọn khách hàng cần xóa";
+            JOptionPane.showMessageDialog(this, mess, "Cảnh Báo", JOptionPane.OK_OPTION);
+            return;
+        }
+        
+        String mess = "Dữ liệu sẽ được xóa hoàn toàn khỏi csdl, bạn có chắc muôn xóa không ?";
+        int result = JOptionPane.showConfirmDialog(this, mess, "Cảnh Báo", JOptionPane.YES_NO_OPTION);
+
+        if(result == JOptionPane.NO_OPTION)
+        return;
+
+        int i = tblKhachHang.getSelectedRow();
+        try {
+            KhachHangProfiles.DeleteDataTable(i);
+            this.setVisibleAndLoadData(true);
+            DataTable.UpdateAllInstance();
+        } catch (SQLException ex) {
+            mess = "Dữ liệu được liên kết, vui lòng xóa các liên kết " +
+            "trước khi xóa dữ liệu này";
+            JOptionPane.showMessageDialog(this, mess, "Cảnh Báo", JOptionPane.OK_OPTION);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(panelQuanLyKhachHang_ChinhSuaThemMoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount() > 0)
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tblKhachHangMouseClicked
+
+    private void tblKhachHangVetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_tblKhachHangVetoableChange
+        // TODO add your handling code here:
+        System.out.println("hello");
+    }//GEN-LAST:event_tblKhachHangVetoableChange
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        if(tblKhachHang.getSelectedRowCount() < 1)
+        {
+            String mess = "Vui lòng chọn thông tin khách hàng cần sửa";
+            JOptionPane.showMessageDialog(this, mess, "Cảnh Báo", JOptionPane.OK_OPTION);
+            return;
+        }
+        
+        setEditMode(true);
+    }//GEN-LAST:event_btnEditActionPerformed
     
+    private void setEditMode(boolean allow)
+    {
+        if(!allow)
+        {
+            btnAddKH.setText("Thêm Khách Hàng");
+            btnDel.setEnabled(true);
+            btnEdit.setEnabled(true);
+            TurnedEditMode = false;
+            RefershTexField();
+            return;
+        }
+        
+        TurnedEditMode = true;
+        btnAddKH.setText("Lưu Chỉnh Sửa");
+        btnDel.setEnabled(false);
+        btnEdit.setEnabled(false);
+        
+        IndexRowSelected = tblKhachHang.getSelectedRow();
+        Object o[] = KhachHangProfiles.getRow(IndexRowSelected);
+        
+        IDKHEdited = o[0];
+        edtNameKH.setText(o[1].toString());
+        edtAddKH.setText(o[2].toString());
+        edtPNumberKH.setText(o[3].toString());
+    }
     
-        public void setVisibleAndLoadData(boolean v, Object[][] datas)
+    private void RefershTexField()
+    {
+        edtNameKH.setText("");
+        edtAddKH.setText("");
+        edtPNumberKH.setText("");
+    }
+    
+    public void setVisibleAndLoadData(boolean v)
     {
         this.setVisible(v);
         
+        if(!v)
+        {
+            return;
+        }
+        
+        
         DefaultTableModel tModel = (DefaultTableModel)tblKhachHang.getModel();
-        
-        
         String c[] = {"Mã Khách Hàng", "Tên Khách Hàng", "Địa Chỉ", "Số Điện Thoại"};
-       
-        tModel.setDataVector(datas, c);
+        tModel.setDataVector(KhachHangProfiles.getTable(), c);
     }
-
+    
+     private DataTable KhachHangProfiles = null;
+     private boolean TurnedEditMode = false;
+     private Object IDKHEdited = null;
+     private int IndexRowSelected = -1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddKH;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JTextField edtAddKH;
+    private javax.swing.JTextField edtNameKH;
+    private javax.swing.JTextField edtPNumberKH;
     private javax.swing.JTextField edtSearch;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -238,9 +440,6 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable tblKhachHang;
     // End of variables declaration//GEN-END:variables
 }
