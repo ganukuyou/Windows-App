@@ -89,9 +89,9 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(741, 550));
 
         jPanel12.setBackground(new java.awt.Color(85, 169, 150));
-        jPanel12.setMaximumSize(new java.awt.Dimension(741, 170));
-        jPanel12.setMinimumSize(new java.awt.Dimension(741, 170));
-        jPanel12.setPreferredSize(new java.awt.Dimension(741, 170));
+        jPanel12.setMaximumSize(new java.awt.Dimension(741, 235));
+        jPanel12.setMinimumSize(new java.awt.Dimension(741, 235));
+        jPanel12.setPreferredSize(new java.awt.Dimension(741, 235));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setText("Tìm Đơn Hàng:");
@@ -191,11 +191,9 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(86, 86, 86))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel20))
+                        .addGap(86, 86, 86)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -205,7 +203,7 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jLabel3))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,17 +239,19 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -293,7 +293,6 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
             
             LoadDataToListDonHang();
             
-            TinhTongTien((int)o[9]);
         }
         
     }//GEN-LAST:event_lsvBangGiaMouseClicked
@@ -303,17 +302,8 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
         DSDonHangTam.clear();
         LoadDataToListDonHang();
         TongTien = 0;
-        TinhTongTien(0);
     }
     
-    private void TinhTongTien(int Tien)
-    {
-        TongTien += Tien;
-
-        lblSoLuong.setText(String.valueOf(DSDonHangTam.size()));
-        lblThanhTien.setText(String.valueOf(TongTien * 110 / 100) + " (VND)");
-        lblTongTien.setText(String.valueOf(TongTien) + " (VND)");
-    }
     
     public void setVisibleAndLoadData(boolean b) throws SQLException, IOException
     {
@@ -339,11 +329,6 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
                 id++;
                 newHDId = String.valueOf(id);
             }
-            lblIDHoaDon.setText(newHDId);
-
-            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-            String ToDate = format.format(Calendar.getInstance().getTime());
-            lblDate.setText(ToDate);
 
             LoadDataToComboBox();
         }
@@ -357,13 +342,7 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
         //Đổ dữ liệu id và tên vào comobox của nhà sản xuất
         Object TenKH[] = KhachHangProfiles.getColumn(1);
         Object MaKH[] = KhachHangProfiles.getColumn(0);
-        
-        cmbIDKhachHang.removeAllItems();
-        for(int i = 0; i < TenKH.length; i++)
-        {
-            String item = MaKH[i].toString() + " - " + TenKH[i].toString();
-            cmbIDKhachHang.addItem(item);
-        }
+
     }
     
     //Nạp thông tin model lên bảng giá
@@ -387,25 +366,13 @@ public class panelDanhMucSanPham_DonDatHang extends javax.swing.JPanel {
         DefaultListModel<String> t = new DefaultListModel();
             for(int i = 0; i < DSDonHangTam.size(); i++)
                 t.addElement(DSDonHangTam.get(i).toString());
-                
-            lsvDonHang.setModel(t);
+               
     }
     
     //Tạo hóa đơn mới
     private void TaoHoaDon() throws SQLException, ClassNotFoundException
     {
-        Object data[] = new Object[6];
-        
-        data[0] = -1;
-        data[1] = KhachHangProfiles.getRow(cmbIDKhachHang.getSelectedIndex())[0];
-        GiaoDienDangNhap g = (GiaoDienDangNhap)JFrame.getFrames()[0];
-        data[2] = g.getIDNhanVien();
-        data[3] = "029-937492";
-        data[4] = Calendar.getInstance().getTime();
-        data[5] = tarNote.getText();
-        
-        HoaDonProfiles.InsertDataTable(0, data);
-        HoaDonProfiles.UpdateNewData();
+
     }
     
     //Tạo chi tiết hóa đơn

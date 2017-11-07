@@ -88,6 +88,23 @@ public class PanelQuanLyKhachHang extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Danh Sách Khách Hàng");
 
+        javax.swing.GroupLayout btnDanhSachKhachHangLayout = new javax.swing.GroupLayout(btnDanhSachKhachHang);
+        btnDanhSachKhachHang.setLayout(btnDanhSachKhachHangLayout);
+        btnDanhSachKhachHangLayout.setHorizontalGroup(
+            btnDanhSachKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnDanhSachKhachHangLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(jLabel1)
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+        btnDanhSachKhachHangLayout.setVerticalGroup(
+            btnDanhSachKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnDanhSachKhachHangLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(25, 25, 25))
+        );
+
         btnChinhSuaThemMoiKhachHnag.setBackground(new java.awt.Color(255, 255, 255));
         btnChinhSuaThemMoiKhachHnag.setFocusCycleRoot(true);
         btnChinhSuaThemMoiKhachHnag.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,65 +120,47 @@ public class PanelQuanLyKhachHang extends javax.swing.JPanel {
         btnChinhSuaThemMoiKhachHnag.setLayout(btnChinhSuaThemMoiKhachHnagLayout);
         btnChinhSuaThemMoiKhachHnagLayout.setHorizontalGroup(
             btnChinhSuaThemMoiKhachHnagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnChinhSuaThemMoiKhachHnagLayout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+            .addGroup(btnChinhSuaThemMoiKhachHnagLayout.createSequentialGroup()
+                .addGap(106, 106, 106)
                 .addComponent(jLabel8)
-                .addGap(108, 108, 108))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         btnChinhSuaThemMoiKhachHnagLayout.setVerticalGroup(
             btnChinhSuaThemMoiKhachHnagLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btnChinhSuaThemMoiKhachHnagLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout btnDanhSachKhachHangLayout = new javax.swing.GroupLayout(btnDanhSachKhachHang);
-        btnDanhSachKhachHang.setLayout(btnDanhSachKhachHangLayout);
-        btnDanhSachKhachHangLayout.setHorizontalGroup(
-            btnDanhSachKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(btnDanhSachKhachHangLayout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(71, 71, 71)
-                .addComponent(btnChinhSuaThemMoiKhachHnag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        btnDanhSachKhachHangLayout.setVerticalGroup(
-            btnDanhSachKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnChinhSuaThemMoiKhachHnag, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(btnDanhSachKhachHangLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnDanhSachKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(btnDanhSachKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnChinhSuaThemMoiKhachHnag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btnDanhSachKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(btnDanhSachKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnChinhSuaThemMoiKhachHnag, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         layoutQuanLyKhachHang.setBackground(new java.awt.Color(85, 169, 150));
-        layoutQuanLyKhachHang.setMaximumSize(new java.awt.Dimension(741, 550));
-        layoutQuanLyKhachHang.setMinimumSize(new java.awt.Dimension(741, 550));
-        layoutQuanLyKhachHang.setPreferredSize(new java.awt.Dimension(741, 550));
+        layoutQuanLyKhachHang.setMaximumSize(new java.awt.Dimension(741, 463));
+        layoutQuanLyKhachHang.setMinimumSize(new java.awt.Dimension(741, 463));
 
         javax.swing.GroupLayout layoutQuanLyKhachHangLayout = new javax.swing.GroupLayout(layoutQuanLyKhachHang);
         layoutQuanLyKhachHang.setLayout(layoutQuanLyKhachHangLayout);
         layoutQuanLyKhachHangLayout.setHorizontalGroup(
             layoutQuanLyKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 741, Short.MAX_VALUE)
         );
         layoutQuanLyKhachHangLayout.setVerticalGroup(
             layoutQuanLyKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 463, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -180,14 +179,10 @@ public class PanelQuanLyKhachHang extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(layoutQuanLyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(layoutQuanLyKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

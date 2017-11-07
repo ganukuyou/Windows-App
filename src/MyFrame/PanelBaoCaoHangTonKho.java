@@ -12,6 +12,7 @@ package MyFrame;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.sql.SQLException;
 
 public class PanelBaoCaoHangTonKho extends javax.swing.JPanel {
 
@@ -21,7 +22,7 @@ public class PanelBaoCaoHangTonKho extends javax.swing.JPanel {
     GridBagLayout layout=new GridBagLayout();
     PanelBaoCaoHangTonKho_BaoCao panelbaocao;
     
-    public PanelBaoCaoHangTonKho() {
+    public PanelBaoCaoHangTonKho() throws ClassNotFoundException, SQLException {
         
         initComponents();
         panelbaocao = new PanelBaoCaoHangTonKho_BaoCao();

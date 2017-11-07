@@ -53,9 +53,9 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
         btnCancel = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(85, 169, 150));
-        setMaximumSize(new java.awt.Dimension(741, 550));
-        setMinimumSize(new java.awt.Dimension(741, 550));
-        setPreferredSize(new java.awt.Dimension(741, 550));
+        setMaximumSize(new java.awt.Dimension(741, 463));
+        setMinimumSize(new java.awt.Dimension(741, 463));
+        setPreferredSize(new java.awt.Dimension(741, 463));
 
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setMaximumSize(new java.awt.Dimension(721, 267));
@@ -250,7 +250,7 @@ public class panelQuanLyKhachHang_ChinhSuaThemMoi extends javax.swing.JPanel {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

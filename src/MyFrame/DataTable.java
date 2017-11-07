@@ -7,12 +7,14 @@ package MyFrame;
 
 import com.mysql.jdbc.Connection;
 import java.io.InputStream;
+import java.sql.Array;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -249,6 +251,61 @@ public class DataTable {
                 }
             }
             
+        }
+        rs.insertRow();
+        rs.beforeFirst();
+        RefershData();
+        
+        return true;
+    }
+    
+    public void InsertDataTableForImage(Object newdata[], InputStream x, int tonkho) throws SQLException
+    {
+        if(newdata.length > ColumnCount)
+            return;
+
+        
+        String q = "Insert into dongho(seri, idtt, modelid, idnv, gia, mieuta, hinh, ngaynhap) Values(?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement ps = con.prepareStatement(q);
+        ps.setNString(1, newdata[0].toString());
+        ps.setInt(2, Integer.parseInt(newdata[1].toString()));
+        ps.setNString(3, newdata[2].toString());
+        ps.setInt(4, Integer.parseInt(newdata[3].toString()));
+        ps.setInt(5, Integer.parseInt(newdata[4].toString()));
+        ps.setNString(6, newdata[5].toString());
+        ps.setBlob(7, x);
+        ps.setObject(8, newdata[7]);
+        ps.executeUpdate();
+        
+        String q1 = "Update model Set tonkho = ? Where modelid = '" + newdata[2].toString() + "';";
+        PreparedStatement ps1 = con.prepareStatement(q1);
+        ps1.setInt(1, tonkho + 1);
+        ps1.executeUpdate();
+        RefershData();
+        
+        ps.close();;
+        ps1.close();
+    }
+    
+    public boolean InsertDataTable(Object newdata[]) throws SQLException
+    {
+        if(newdata.length > ColumnCount)
+            return false;
+            
+        
+        rs.moveToInsertRow();
+        rs.updateString(1, newdata[0].toString());
+        
+        for(int i = 2; i <= ColumnCount; i++)
+        {
+            if (newdata[i - 1] instanceof String) 
+            {
+                rs.updateNString(i, newdata[i - 1].toString());
+            } 
+            else 
+            {
+                rs.updateObject(i, newdata[i - 1]);
+            }
         }
         rs.insertRow();
         rs.beforeFirst();

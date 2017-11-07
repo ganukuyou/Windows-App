@@ -6,13 +6,13 @@
       <Color blue="96" green="a9" red="55" type="rgb"/>
     </Property>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[741, 550]"/>
+      <Dimension value="[741, 463]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[741, 550]"/>
+      <Dimension value="[741, 463]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[741, 550]"/>
+      <Dimension value="[741, 463]"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -47,7 +47,7 @@
               <Component id="jPanel12" min="-2" pref="175" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="96" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

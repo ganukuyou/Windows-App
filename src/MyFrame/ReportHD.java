@@ -46,7 +46,7 @@ public class ReportHD {
             hash.put("IDHD",Integer.parseInt(args[0]));
             
             JasperPrint print = JasperFillManager.fillReport(report,hash, conn);
-            JasperViewer.viewReport(print);
+            JasperViewer.viewReport(print, false);
         } catch (Exception e) {
             e.printStackTrace();
         }

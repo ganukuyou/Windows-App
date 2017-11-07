@@ -34,13 +34,14 @@ public class panelQuanLyKhachHang_DanhSach extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblKhachHang = new javax.swing.JTable();
 
-        setMaximumSize(new java.awt.Dimension(741, 550));
-        setMinimumSize(new java.awt.Dimension(741, 550));
-        setPreferredSize(new java.awt.Dimension(741, 550));
+        setMaximumSize(new java.awt.Dimension(741, 463));
+        setMinimumSize(new java.awt.Dimension(741, 463));
+        setPreferredSize(new java.awt.Dimension(741, 463));
 
         jPanel12.setBackground(new java.awt.Color(85, 169, 150));
-        jPanel12.setMaximumSize(new java.awt.Dimension(741, 550));
-        jPanel12.setMinimumSize(new java.awt.Dimension(741, 550));
+        jPanel12.setMaximumSize(new java.awt.Dimension(741, 463));
+        jPanel12.setMinimumSize(new java.awt.Dimension(741, 463));
+        jPanel12.setPreferredSize(new java.awt.Dimension(741, 463));
 
         tblKhachHang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(85, 169, 150)));
         tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
@@ -80,7 +81,7 @@ public class panelQuanLyKhachHang_DanhSach extends javax.swing.JPanel {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -92,7 +93,7 @@ public class panelQuanLyKhachHang_DanhSach extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     

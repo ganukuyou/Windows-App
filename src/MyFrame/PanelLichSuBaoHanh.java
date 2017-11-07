@@ -37,11 +37,13 @@ public class PanelLichSuBaoHanh extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(85, 169, 150));
-        setMaximumSize(new java.awt.Dimension(745, 630));
-        setMinimumSize(new java.awt.Dimension(745, 630));
-        setPreferredSize(new java.awt.Dimension(745, 630));
+        setMaximumSize(new java.awt.Dimension(741, 550));
+        setMinimumSize(new java.awt.Dimension(741, 550));
+        setPreferredSize(new java.awt.Dimension(741, 550));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bộ lọc :", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 0, 14))); // NOI18N
+        jPanel1.setMaximumSize(new java.awt.Dimension(721, 114));
+        jPanel1.setMinimumSize(new java.awt.Dimension(721, 114));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -72,7 +74,7 @@ public class PanelLichSuBaoHanh extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel4)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,7 +87,7 @@ public class PanelLichSuBaoHanh extends javax.swing.JPanel {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -99,15 +101,18 @@ public class PanelLichSuBaoHanh extends javax.swing.JPanel {
                 "STT", "Khach Hang", "Id Sản Phẩm", "Tên Sản Phẩm", "Loại bảo hành", "Trạng thái", "Ngày hẹn trả", "Đã trả khách"
             }
         ));
+        jTable1.setMaximumSize(new java.awt.Dimension(721, 400));
+        jTable1.setMinimumSize(new java.awt.Dimension(721, 400));
+        jTable1.setPreferredSize(new java.awt.Dimension(721, 400));
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -117,8 +122,8 @@ public class PanelLichSuBaoHanh extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

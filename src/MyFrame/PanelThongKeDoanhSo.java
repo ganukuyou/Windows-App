@@ -273,12 +273,16 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
         cmbDateDetail = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(85, 169, 150));
         setMaximumSize(new java.awt.Dimension(741, 550));
         setMinimumSize(new java.awt.Dimension(741, 550));
         setPreferredSize(new java.awt.Dimension(741, 550));
 
-        jPanel2.setBackground(new java.awt.Color(85, 169, 150));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Doanh số bán hàng:"));
+        jPanel2.setMaximumSize(new java.awt.Dimension(721, 192));
+        jPanel2.setMinimumSize(new java.awt.Dimension(721, 192));
+        jPanel2.setPreferredSize(new java.awt.Dimension(721, 192));
 
         tblDoanhSo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -310,7 +314,7 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 642, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -330,8 +334,11 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
             }
         });
 
-        pnlChart.setBackground(new java.awt.Color(85, 169, 150));
+        pnlChart.setBackground(new java.awt.Color(255, 255, 255));
         pnlChart.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Biểu đồ doanh thu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        pnlChart.setMaximumSize(new java.awt.Dimension(721, 280));
+        pnlChart.setMinimumSize(new java.awt.Dimension(721, 280));
+        pnlChart.setPreferredSize(new java.awt.Dimension(721, 280));
         pnlChart.setLayout(new java.awt.BorderLayout());
 
         cmbDateDetail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Theo Ngày", "Theo Tháng", "Theo Năm" }));
@@ -357,12 +364,12 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(cmbDateDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(43, 43, 43))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,8 +383,8 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlChart, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlChart, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pnlChart.getAccessibleContext().setAccessibleName("");

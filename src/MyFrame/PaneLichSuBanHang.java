@@ -42,6 +42,11 @@ public final class PaneLichSuBanHang extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblLichSu = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(85, 169, 150));
+        setMaximumSize(new java.awt.Dimension(741, 550));
+        setMinimumSize(new java.awt.Dimension(741, 550));
+        setPreferredSize(new java.awt.Dimension(741, 550));
+
         jLabel9.setText("Liệt kê theo :");
 
         cmbLietKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hôm nay", "Hôm qua", "7 ngày gần nhất", "1 tháng gần nhất" }));
@@ -95,8 +100,8 @@ public final class PaneLichSuBanHang extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(cmbLietKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,9 +184,8 @@ public final class PaneLichSuBanHang extends javax.swing.JPanel {
         Calendar d = Calendar.getInstance();
         d.add(Calendar.DAY_OF_WEEK, -1);
         String fromDate = format.format(d.getTime());
-        String currentDate = format.format(Calendar.getInstance().getTime());
         
-        LichSuHomQuaProfiles = new DataTable("localhost", "clock", 7, getQuery(fromDate, currentDate));
+        LichSuHomQuaProfiles = new DataTable("localhost", "clock", 7, getQuery(fromDate, fromDate));
     }
 
     //Nhận dữ liệu lịch sử bán hàng bảy ngày gần đây
