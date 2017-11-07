@@ -112,7 +112,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         jPanel12.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 721, 130));
 
         jPanel1.setBackground(new java.awt.Color(85, 169, 150));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Đơn hàng:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thanh Toán Mua Hàng:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jScrollPane1.setViewportView(lsvDonHang);
 
