@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 public class GiaoDienQuanTri extends javax.swing.JFrame {
@@ -678,6 +679,16 @@ public class GiaoDienQuanTri extends javax.swing.JFrame {
         btnQuanLyHangTonKho.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
        btnQuanLyNhanVien.setBackground(Color.decode("#003333"));
+       
+        JFrame.getFrames()[0].setVisible(true);
+        try {
+            DataTable.UpdateAllInstance();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GiaoDienQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienQuanTri.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
     }//GEN-LAST:event_btnDangXuatMouseClicked
 
     private void btnLichSuBaoHanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLichSuBaoHanhMouseClicked

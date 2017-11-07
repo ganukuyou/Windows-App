@@ -122,11 +122,11 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
 
         jLabel3.setText("Tổng cộng:");
 
-        lblTongTien.setText("VND");
+        lblTongTien.setText("0 (VND)");
 
         jLabel7.setText("Thành Tiền:");
 
-        lblThanhTien.setText("VND");
+        lblThanhTien.setText("0 (VND)");
 
         btnXuatHoaDon.setText("Xuất Hóa Đơn");
         btnXuatHoaDon.addActionListener(new java.awt.event.ActionListener() {
@@ -390,9 +390,11 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
            // TODO add your handling code here:
            TaoHoaDon();
            TaoChiTietHoaDon();
-           JOptionPane.showConfirmDialog(this, "Xuất Hóa Đơn Thành Công", "Thông Báo", JOptionPane.OK_OPTION);
+           JOptionPane.showMessageDialog(this, "Xuất Hóa Đơn Thành Công", "Thông Báo", JOptionPane.OK_OPTION);
            RefershInput();
            DataTable.UpdateAllInstance();
+           String s[] = {lblIDHoaDon.getText()};
+           ReportHD.main(s);
            this.setVisibleAndLoadData(true);
            
        } catch (SQLException ex) {
@@ -438,7 +440,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
             
             LoadDataToListBangGia();
 
-            String newHDId = "0";
+            String newHDId = "1";
             if(HoaDonProfiles.getRowCount() > 0)
             {
                 int id = (int) HoaDonProfiles.getRow(HoaDonProfiles.getRowCount() - 1)[0];

@@ -218,7 +218,7 @@ public class DataTable {
         index_of_id += 1;
         
         rs.last();
-        int id = 0;
+        int id = 1;
         if(RowCount > 0 && index_of_id > 0)
         {
             id = rs.getInt(index_of_id) + 1;

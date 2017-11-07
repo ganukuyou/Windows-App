@@ -407,7 +407,13 @@ public class GiaoDienNhanVien extends javax.swing.JFrame {
         btnDangXuat.setBackground(Color.decode("#003333"));
         btnDonDatHang.setBackground(Color.decode("#003333"));
         panDanhMucSanPham_BanHang.setVisible(false);
-        panelLichSuBanHang.setVisible(true);//Cho phen hien thi panel lich su ban hang
+        try {
+            panelLichSuBanHang.setVisibleAndLoadData(true);//Cho phen hien thi panel lich su ban hang
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GiaoDienNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GiaoDienNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         panelQuanLyKhachHang.setVisible(false);
         panelThongKeDoanhSo.setVisible(false);
         panelDanhMucSanPham_DonDatHang.setVisible(false);

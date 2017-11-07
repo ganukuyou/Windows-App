@@ -368,7 +368,6 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
                 String cv = data[5].toString().toUpperCase();
                 if(cv.equals(LoaiNV))
                 {
-                    
                     if(data[4].toString().equals(pass))
                     {
                         Log = true;
@@ -386,6 +385,7 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
     {
         return IDNhanVien;
     }
+    
     
     /**
      * @param args the command line arguments
