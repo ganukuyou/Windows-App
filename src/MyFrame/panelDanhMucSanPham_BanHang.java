@@ -112,7 +112,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         jPanel12.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 721, 130));
 
         jPanel1.setBackground(new java.awt.Color(85, 169, 150));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Đơn hàng:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thanh Toán Mua Hàng:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         jScrollPane1.setViewportView(lsvDonHang);
 
@@ -122,11 +122,11 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
 
         jLabel3.setText("Tổng cộng:");
 
-        lblTongTien.setText("VND");
+        lblTongTien.setText("0 (VND)");
 
         jLabel7.setText("Thành Tiền:");
 
-        lblThanhTien.setText("VND");
+        lblThanhTien.setText("0 (VND)");
 
         btnXuatHoaDon.setText("Xuất Hóa Đơn");
         btnXuatHoaDon.addActionListener(new java.awt.event.ActionListener() {
@@ -390,9 +390,11 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
            // TODO add your handling code here:
            TaoHoaDon();
            TaoChiTietHoaDon();
-           JOptionPane.showConfirmDialog(this, "Xuất Hóa Đơn Thành Công", "Thông Báo", JOptionPane.OK_OPTION);
+           JOptionPane.showMessageDialog(this, "Xuất Hóa Đơn Thành Công", "Thông Báo", JOptionPane.OK_OPTION);
            RefershInput();
            DataTable.UpdateAllInstance();
+           String s[] = {lblIDHoaDon.getText()};
+           ReportHD.main(s);
            this.setVisibleAndLoadData(true);
            
        } catch (SQLException ex) {
@@ -438,7 +440,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
             
             LoadDataToListBangGia();
 
-            String newHDId = "0";
+            String newHDId = "1";
             if(HoaDonProfiles.getRowCount() > 0)
             {
                 int id = (int) HoaDonProfiles.getRow(HoaDonProfiles.getRowCount() - 1)[0];
@@ -574,7 +576,7 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
     private javax.swing.JLabel lblThanhTien;
     private javax.swing.JLabel lblThue;
     private javax.swing.JLabel lblTongTien;
-    private javax.swing.JList<Model> lsvBangGia;
+    private javax.swing.JList<MyFrame.Model> lsvBangGia;
     private javax.swing.JList<String> lsvDonHang;
     private javax.swing.JTextArea tarNote;
     // End of variables declaration//GEN-END:variables

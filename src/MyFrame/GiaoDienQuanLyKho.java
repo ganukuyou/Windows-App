@@ -341,10 +341,9 @@ public class GiaoDienQuanLyKho extends javax.swing.JFrame {
         btnQuanLySanPham.setBackground(Color.decode("#003333"));
         btnBaoCaoHangTonKho.setBackground(Color.decode("#003333"));
         btnDangXuat.setBackground(Color.decode("#55a996"));
-
-
-
-        // TODO add your handling code here:
+        
+        JFrame.getFrames()[0].setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDangXuatMouseClicked
 
     

@@ -6,10 +6,8 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /*
@@ -370,10 +368,10 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
                 String cv = data[5].toString().toUpperCase();
                 if(cv.equals(LoaiNV))
                 {
-                    
                     if(data[4].toString().equals(pass))
                     {
                         Log = true;
+                        IDNhanVien = maRef;
                         break;
                     }
                 }
@@ -387,6 +385,7 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
     {
         return IDNhanVien;
     }
+    
     
     /**
      * @param args the command line arguments
