@@ -255,7 +255,9 @@ public class GiaoDienKyThuat extends javax.swing.JFrame {
             setLocation(dx, dy);
     }
     private void btnDangXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangXuatMouseClicked
-        
+
+        JFrame.getFrames()[0].setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDangXuatMouseClicked
 
     private void btnLichSuBaoHanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLichSuBaoHanhMouseClicked

@@ -319,7 +319,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblTongTien">
           <Properties>
-            <Property name="text" type="java.lang.String" value="VND"/>
+            <Property name="text" type="java.lang.String" value="0 (VND)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -329,7 +329,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblThanhTien">
           <Properties>
-            <Property name="text" type="java.lang.String" value="VND"/>
+            <Property name="text" type="java.lang.String" value="0 (VND)"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnXuatHoaDon">

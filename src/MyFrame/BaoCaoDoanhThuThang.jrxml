@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BaoCaoDoanhThuThang" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21e42cc2-d3cd-4c6b-b1a5-7bfadcea9b82">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="30"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="BaoCaoDoanhThu" uuid="ecca33ff-1f41-4e4b-8dd8-122f526b0078">
+		<queryString>
+			<![CDATA[SELECT
+     model.`MODELID` AS model_MODELID,
+     COUNT(model.MODELID) as SoLuong,
+     model.`GIA` AS model_GIA,
+     model.`DACDIEM` AS model_DACDIEM
+FROM
+     `model` model INNER JOIN `dongho` dongho ON model.`MODELID` = dongho.`MODELID`
+     INNER JOIN `chitiethd` chitiethd ON dongho.`SERI` = chitiethd.`SERI`
+     INNER JOIN `hoadon` hoadon ON chitiethd.`IDHD` = hoadon.`IDHD`
+GROUP BY
+     model.`MODELID`]]>
+		</queryString>
+		<field name="model_MODELID" class="java.lang.String"/>
+		<field name="SoLuong" class="java.lang.Long">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="model_GIA" class="java.lang.Integer"/>
+		<field name="model_DACDIEM" class="java.lang.String"/>
+		<variable name="THANH_TIEN" class="java.lang.Number">
+			<variableExpression><![CDATA[$F{model_GIA}*$F{SoLuong}]]></variableExpression>
+		</variable>
+		<variable name="TONG_SOLUONG" class="java.lang.Integer" calculation="Sum">
+			<variableExpression><![CDATA[$F{SoLuong}]]></variableExpression>
+		</variable>
+		<variable name="TONG_THANHTIEN" class="java.lang.Integer" calculation="Sum">
+			<variableExpression><![CDATA[$V{THANH_TIEN}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="THANG" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     COUNT(model.MODELID) AS SoLuong,
+     model.`MODELID` AS model_MODELID,
+     model.`IDNSX` AS model_IDNSX,
+     model.`IDNPP` AS model_IDNPP,
+     model.`IDLOAI` AS model_IDLOAI,
+     model.`ID_CL` AS model_ID_CL,
+     model.`ID_PIN` AS model_ID_PIN,
+     model.`SIZE` AS model_SIZE,
+     model.`BAOHANH` AS model_BAOHANH,
+     model.`DACDIEM` AS model_DACDIEM,
+     model.`GIA` AS model_GIA,
+     model.`TONKHO` AS model_TONKHO,
+     dongho.`SERI` AS dongho_SERI,
+     dongho.`IDTT` AS dongho_IDTT,
+     dongho.`MODELID` AS dongho_MODELID,
+     dongho.`IDNV` AS dongho_IDNV,
+     dongho.`GIA` AS dongho_GIA,
+     dongho.`MIEUTA` AS dongho_MIEUTA,
+     dongho.`HINH` AS dongho_HINH,
+     dongho.`NGAYNHAP` AS dongho_NGAYNHAP,
+     chitiethd.`IDHD` AS chitiethd_IDHD,
+     chitiethd.`SERI` AS chitiethd_SERI,
+     chitiethd.`STT` AS chitiethd_STT,
+     hoadon.`IDHD` AS hoadon_IDHD,
+     hoadon.`IDKH` AS hoadon_IDKH,
+     hoadon.`IDNV` AS hoadon_IDNV,
+     hoadon.`MSTCH` AS hoadon_MSTCH,
+     hoadon.`NGAYXUAT` AS hoadon_NGAYXUAT,
+     hoadon.`NOTEHD` AS hoadon_NOTEHD,
+     cuahang.`MSTCH` AS cuahang_MSTCH,
+     cuahang.`NAMECH` AS cuahang_NAMECH,
+     cuahang.`ADDRESSCH` AS cuahang_ADDRESSCH,
+     cuahang.`SDTCH` AS cuahang_SDTCH,
+     nhanvien.`NAMENV` AS nhanvien_NAMENV
+FROM
+     `model` model INNER JOIN `dongho` dongho ON model.`MODELID` = dongho.`MODELID`
+     INNER JOIN `chitiethd` chitiethd ON dongho.`SERI` = chitiethd.`SERI`
+     INNER JOIN `nhanvien` nhanvien ON dongho.`IDNV` = nhanvien.`IDNV`
+     INNER JOIN `hoadon` hoadon ON nhanvien.`IDNV` = hoadon.`IDNV`
+     AND chitiethd.`IDHD` = hoadon.`IDHD`
+     INNER JOIN `cuahang` cuahang ON hoadon.`MSTCH` = cuahang.`MSTCH`
+GROUP BY
+     model.`MODELID`
+HAVING
+     MONTH(hoadon.NGAYXUAT) = $P{THANG}]]>
+	</queryString>
+	<field name="SoLuong" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="model_MODELID" class="java.lang.String"/>
+	<field name="model_IDNSX" class="java.lang.Integer"/>
+	<field name="model_IDNPP" class="java.lang.Integer"/>
+	<field name="model_IDLOAI" class="java.lang.Integer"/>
+	<field name="model_ID_CL" class="java.lang.Integer"/>
+	<field name="model_ID_PIN" class="java.lang.Integer"/>
+	<field name="model_SIZE" class="java.lang.Integer"/>
+	<field name="model_BAOHANH" class="java.lang.Integer"/>
+	<field name="model_DACDIEM" class="java.lang.String"/>
+	<field name="model_GIA" class="java.lang.Integer"/>
+	<field name="model_TONKHO" class="java.lang.Integer"/>
+	<field name="dongho_SERI" class="java.lang.String"/>
+	<field name="dongho_IDTT" class="java.lang.Integer"/>
+	<field name="dongho_MODELID" class="java.lang.String"/>
+	<field name="dongho_IDNV" class="java.lang.Integer"/>
+	<field name="dongho_GIA" class="java.lang.Integer"/>
+	<field name="dongho_MIEUTA" class="java.lang.String"/>
+	<field name="dongho_HINH" class="java.lang.Object"/>
+	<field name="dongho_NGAYNHAP" class="java.sql.Date"/>
+	<field name="chitiethd_IDHD" class="java.lang.Integer"/>
+	<field name="chitiethd_SERI" class="java.lang.String"/>
+	<field name="chitiethd_STT" class="java.lang.Integer"/>
+	<field name="hoadon_IDHD" class="java.lang.Integer"/>
+	<field name="hoadon_IDKH" class="java.lang.Integer"/>
+	<field name="hoadon_IDNV" class="java.lang.Integer"/>
+	<field name="hoadon_MSTCH" class="java.lang.String"/>
+	<field name="hoadon_NGAYXUAT" class="java.sql.Date"/>
+	<field name="hoadon_NOTEHD" class="java.lang.String"/>
+	<field name="cuahang_MSTCH" class="java.lang.String"/>
+	<field name="cuahang_NAMECH" class="java.lang.String"/>
+	<field name="cuahang_ADDRESSCH" class="java.lang.String"/>
+	<field name="cuahang_SDTCH" class="java.lang.String"/>
+	<field name="nhanvien_NAMENV" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="159" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="53" width="555" height="47" uuid="39a347a5-9386-4a2f-b24c-daaf3770f362"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[BÁO CÁO DOANH THU]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="10" width="555" height="36" uuid="43304763-fd13-40cb-a1e7-0834a7425721"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" pdfEncoding="Identity-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuahang_NAMECH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="314" y="100" width="119" height="46" forecolor="#000000" backcolor="#FFFFFF" uuid="3ba1eaf6-5f22-4ceb-8939-84eded97436d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="30" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{THANG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="142" y="100" width="159" height="46" forecolor="#000000" backcolor="#FFFFFF" uuid="043e4d1c-2c46-48c9-b923-311e87ee7c33"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="30" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[THÁNG]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="128" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" style="table 1" x="0" y="0" width="555" height="128" uuid="fcf6b998-2e57-4464-b79e-d487ddf1e0cb"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="BaoCaoDoanhThu" uuid="4d92258e-9949-47a9-bc34-3e9eae26d0d3">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="755bee6c-27dc-46b0-a9df-02730bd74bec">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="505988ef-cbc4-4f5c-8329-610d57c66d6f"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[MODEL ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="31" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="e1704e99-c382-4e65-9406-c468abe71727"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{model_MODELID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="145" uuid="5a6c6353-01da-42f9-84c3-a2ddfff4e3ae">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="145" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="a05018ef-4d4d-4812-92b1-d4966f4b65db"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[MODEL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="145" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="24cc8afa-debc-48df-b4e4-170ee0afc9d9"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[TỔNG CỘNG:]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table 1_TD" height="31" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="145" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="b14b879a-45ab-45d1-a258-51c24577664a"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{model_DACDIEM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e06dda91-a5d5-4812-b909-4ca9cc5fd407">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="2d4e4331-1ff0-4ffd-b71b-69427b24d47a"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[GIÁ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1_TD" height="31" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="12565483-011a-4f13-8cbd-85ed33d00121"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{model_GIA}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="47" uuid="29657731-6f6b-4b86-b684-3d60f8068bf1">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="47" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="f3354dbc-212b-461f-9690-cc9e04dab7f9"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[SỐ LƯỢNG]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="47" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="d0873fd1-34bf-49fe-8e29-c7ef9fd2b2b7"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TONG_SOLUONG}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell height="31" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="47" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="76a4a6c7-cfcc-48ee-9799-829928df379a"/>
+								<box leftPadding="5" rightPadding="5">
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SoLuong}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2216c02f-62c8-44a3-9fa9-7dd2385e666c">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="4e73178e-ad71-4658-a44d-b1d622421457"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[THÀNH TIỀN]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="2e7ed436-61d4-40ae-921f-8ec6e0b0a3f0"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TONG_THANHTIEN}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell height="31" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="31" forecolor="#000000" backcolor="#FFFFFF" uuid="4571ad6c-8aee-4158-b747-ab0921b99d50"/>
+								<box leftPadding="5" rightPadding="5">
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{THANH_TIEN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="100c84bd-05e3-4269-9df7-667e7da6ff3b">
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="31216410-be0d-4ea8-9979-0dad909498c0"/>
+								<box leftPadding="5" rightPadding="5"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[GHI CHÚ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 1_CH" height="30" rowSpan="1"/>
+						<jr:detailCell height="31" rowSpan="1">
+							<staticText>
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="31" forecolor="#000000" backcolor="#FFFFFF" uuid="59e0f805-4587-4911-87a5-68b05ba60fe6"/>
+								<box leftPadding="5" rightPadding="5">
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="162" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="422" y="31" width="133" height="44" forecolor="#000000" backcolor="#FFFFFF" uuid="8d51a434-62f8-4966-a1da-c61f9a2655f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Người lập báo cáo
+(kí tên)]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="422" y="139" width="133" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="cf145d50-5af9-4245-a3e5-8c320923be7f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfEncoding="Identity-H" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nhanvien_NAMENV}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="420" y="4" width="135" height="20" uuid="3bc011a3-4d79-4563-a6ec-80bf2eb04407"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

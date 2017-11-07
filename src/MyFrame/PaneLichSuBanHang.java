@@ -5,17 +5,27 @@
  */
 package MyFrame;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Thu
  */
-public class PaneLichSuBanHang extends javax.swing.JPanel {
+public final class PaneLichSuBanHang extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelDanhMucSanPham
      */
-    public PaneLichSuBanHang() {
+    public PaneLichSuBanHang() throws ClassNotFoundException, SQLException {
         initComponents();
+        LoadDBHomNay();
+        LoadDBHomQua();
+        LoadDBBayNgay();
+        LoadDBThang();
     }
 
     /**
@@ -30,13 +40,18 @@ public class PaneLichSuBanHang extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         cmbLietKe = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblHienThi = new javax.swing.JTable();
+        tblLichSu = new javax.swing.JTable();
 
         jLabel9.setText("Liệt kê theo :");
 
         cmbLietKe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hôm nay", "Hôm qua", "7 ngày gần nhất", "1 tháng gần nhất" }));
+        cmbLietKe.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbLietKeItemStateChanged(evt);
+            }
+        });
 
-        tblHienThi.setModel(new javax.swing.table.DefaultTableModel(
+        tblLichSu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -44,7 +59,7 @@ public class PaneLichSuBanHang extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Tên Nhân Viên", "Mã Model", "Mã Đơn Hàng", "Tên Khách Hàng", "Ngày tháng", "Số Lượng", "Số Tiền"
+                "Tên Nhân Viên", "Mã Model", "Seri Sản Phẩm", "Mã Hóa Đơn", "Tên Khách Hàng", "Ngày tháng", "Số Tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -55,7 +70,7 @@ public class PaneLichSuBanHang extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblHienThi);
+        jScrollPane1.setViewportView(tblLichSu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,11 +100,126 @@ public class PaneLichSuBanHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cmbLietKeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbLietKeItemStateChanged
+        // TODO add your handling code here:
+        LoadDBToJTable(cmbLietKe.getSelectedIndex());
+    }//GEN-LAST:event_cmbLietKeItemStateChanged
 
+    void LoadDBToJTable(int SelectedIndex)
+    {
+        DefaultTableModel tModel = (DefaultTableModel)tblLichSu.getModel();
+        String c[] = {"Tên Nhân Viên", "Mã Model", "Seri Sản Phẩm", "Mã Hóa Đơn", "Tên Khách Hàng", "Ngày Tháng", "Giá Tiền"};
+        switch(SelectedIndex)
+        {
+            case 0:
+            {
+                tModel.setDataVector(LichSuHomNayProfiles.getTable(), c);
+                break;
+            }
+            case 1:
+            {
+                tModel.setDataVector(LichSuHomQuaProfiles.getTable(), c);
+                break;
+            }
+            case 2:
+            {
+                tModel.setDataVector(LichSuBayNgayProfiles.getTable(), c);
+                break;
+            }
+            default:
+            {
+                tModel.setDataVector(LichSuThangProfiles.getTable(), c);
+                break;
+            }
+        }
+    }
+    
+    
+    void setVisibleAndLoadData(boolean b) throws ClassNotFoundException, SQLException
+    {
+        if(!b)
+            return;
+        this.setVisible(b);
+        LoadDBHomNay();
+        LoadDBHomQua();
+        LoadDBBayNgay();
+        LoadDBThang();
+        LoadDBToJTable(cmbLietKe.getSelectedIndex());
+    }
+    
+    String getQuery(String fromDate, String toDate)
+    {
+        String query = "Select nv.namenv, s.modelid, cthd.seri, hd.idhd, kh.namekh, hd.ngayxuat, s.gia from hoadon hd " +
+                            "join nhanvien nv on hd.idnv = nv.idnv "
+                            + "join khachhang kh on hd.idkh = kh.idkh "
+                            + "join chitiethd cthd on hd.idhd = cthd.idhd "
+                            + "join (Select chitiethd.idhd, modelid, dongho.seri, " 
+                            + " gia from dongho join chitiethd on dongho.seri = "
+                            + "chitiethd.seri) s on hd.idhd = s.idhd "
+                            + "Where ngayxuat between '" + fromDate + "' And '" + toDate + "';";
+        return query;
+    }
+    
+    //Nhận dữ liệu lịch sử của hôm nay
+    void LoadDBHomNay() throws ClassNotFoundException, SQLException
+    {
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = format.format(Calendar.getInstance().getTime());
+        
+        
+        LichSuHomNayProfiles = new DataTable("localhost", "clock", 7, getQuery(currentDate, currentDate));
+    }
+    
+    //Nhận dữ liệu lịch sử bán hàng của hôm qua
+    void LoadDBHomQua() throws ClassNotFoundException, SQLException
+    {
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar d = Calendar.getInstance();
+        d.add(Calendar.DAY_OF_WEEK, -1);
+        String fromDate = format.format(d.getTime());
+        String currentDate = format.format(Calendar.getInstance().getTime());
+        
+        LichSuHomQuaProfiles = new DataTable("localhost", "clock", 7, getQuery(fromDate, currentDate));
+    }
+
+    //Nhận dữ liệu lịch sử bán hàng bảy ngày gần đây
+    void LoadDBBayNgay() throws ClassNotFoundException, SQLException
+    {
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar d = Calendar.getInstance();
+        d.add(Calendar.DAY_OF_WEEK, -7);
+        String fromDate = format.format(d.getTime());
+        String currentDate = format.format(Calendar.getInstance().getTime());
+        
+        
+        LichSuBayNgayProfiles = new DataTable("localhost", "clock", 7, getQuery(fromDate, currentDate));
+    }
+    
+    //Nhận dữ liệu lịch sử bán hàng 1 tháng gần đây
+    void LoadDBThang() throws ClassNotFoundException, SQLException
+    {
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar d = Calendar.getInstance();
+        d.add(Calendar.MONTH, -1);
+        String fromDate = format.format(d.getTime());
+        String currentDate = format.format(Calendar.getInstance().getTime());
+        
+        
+        LichSuThangProfiles = new DataTable("localhost", "clock", 7, getQuery(fromDate, currentDate));
+    }
+    
+    DataTable LichSuHomNayProfiles;
+    DataTable LichSuHomQuaProfiles;
+    DataTable LichSuBayNgayProfiles;
+    DataTable LichSuThangProfiles;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbLietKe;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblHienThi;
+    private javax.swing.JTable tblLichSu;
     // End of variables declaration//GEN-END:variables
 }
