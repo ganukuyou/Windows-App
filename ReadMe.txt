@@ -1,0 +1,1 @@
+Vao Properties chinh lai path cac lib, t de het trong folder lib do
