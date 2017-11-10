@@ -44,11 +44,7 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
         panelDanhSachNhanVien = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblNhanVien = new javax.swing.JTable();
-        edtSearch = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         panelThemMoiNhanVien = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        edtSearch2 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblNhanVienUpdate = new javax.swing.JTable();
         panelCapNhatNhanVien_Layout = new javax.swing.JPanel();
@@ -106,36 +102,21 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
         tblNhanVien.setPreferredSize(new java.awt.Dimension(762, 460));
         jScrollPane2.setViewportView(tblNhanVien);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Tìm");
-
         javax.swing.GroupLayout panelDanhSachNhanVienLayout = new javax.swing.GroupLayout(panelDanhSachNhanVien);
         panelDanhSachNhanVien.setLayout(panelDanhSachNhanVienLayout);
         panelDanhSachNhanVienLayout.setHorizontalGroup(
             panelDanhSachNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDanhSachNhanVienLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(edtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(305, 305, 305))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
         );
         panelDanhSachNhanVienLayout.setVerticalGroup(
             panelDanhSachNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDanhSachNhanVienLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(panelDanhSachNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(edtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(53, 53, 53)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Danh Sách Nhân Viên", panelDanhSachNhanVien);
-
-        jLabel3.setText("Tìm");
 
         jScrollPane3.setMaximumSize(new java.awt.Dimension(736, 469));
         jScrollPane3.setMinimumSize(new java.awt.Dimension(736, 469));
@@ -278,19 +259,12 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
             .addGroup(panelThemMoiNhanVienLayout.createSequentialGroup()
                 .addGroup(panelThemMoiNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelThemMoiNhanVienLayout.createSequentialGroup()
-                        .addGroup(panelThemMoiNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelThemMoiNhanVienLayout.createSequentialGroup()
-                                .addGap(219, 219, 219)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(edtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelThemMoiNhanVienLayout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addGroup(panelThemMoiNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnEditNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(10, 10, 10)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addGroup(panelThemMoiNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEditNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 20, Short.MAX_VALUE))
                     .addGroup(panelThemMoiNhanVienLayout.createSequentialGroup()
                         .addContainerGap()
@@ -300,11 +274,7 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
         panelThemMoiNhanVienLayout.setVerticalGroup(
             panelThemMoiNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelThemMoiNhanVienLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(panelThemMoiNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(edtSearch2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(66, 66, 66)
                 .addGroup(panelThemMoiNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelThemMoiNhanVienLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,18 +387,21 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        //Kiểm tra có đang ở trong trạng thái chỉnh sửa hay không
         if(isEditModeNV)
         {
             SetEditMode(false);
             return;
         }
         
+        //Làm mới các input đã nhập
         RefershInputNV();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnAddNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNVActionPerformed
         try {
-            // TODO add your handling code here:
+            //Nếu đang trong trạng thái edit thì cho cập nhật, ngược lại thì thêm
             if(isEditModeNV)
             {
                 UpdateNhanVien();
@@ -444,13 +417,14 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddNVActionPerformed
 
     private void edtNumPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNumPKeyTyped
-        // TODO add your handling code here:
         if(evt.getKeyChar() < '0' || evt.getKeyChar() > '9' || edtNumP.getText().length() > 11)
             evt.consume();
     }//GEN-LAST:event_edtNumPKeyTyped
 
     private void btnEditNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditNVActionPerformed
         // TODO add your handling code here:
+        
+        //Kiểm tra có chọn hàng để tương tác hay không
         if(tblNhanVienUpdate.getSelectedRowCount() < 1)
         {
             JOptionPane.showMessageDialog(this, "Hãy Chọn Hàng Cần Sửa");
@@ -482,13 +456,15 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDelActionPerformed
 
+    //Hàm chịu trách nhiệm nạp csdl lên ram
     private void LoadDB() throws ClassNotFoundException, SQLException
     {
         NhanVienProfiles = new DataTable("localhost", "clock", "nhanvien", 6);
         ChucVuProfiles = new DataTable("localhost", "clock", "chucvu", 2);
     }
     
-    private void LoadDBToTable()
+    //Hàm có trách nhiệm chuyển csdl vào jtable để hiển thi 
+   private void LoadDBToTable()
     {   
         DefaultTableModel tModelNV = (DefaultTableModel)tblNhanVien.getModel();
         String c[] = {"Mã Nhân Viên", "Tên Nhân Viên", "Địa Chỉ", "Số Điện Thoại", "Mật Khẩu", "Chức Vụ"};
@@ -502,6 +478,7 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
         tModelCV.setDataVector(ChucVuProfiles.getTable(), cv);
     }
     
+   //Nạp DB đến combobox
     private void LoadDBToComboBox()
     {
         Object macv[] = ChucVuProfiles.getColumn(0);
@@ -641,12 +618,8 @@ public class PanelQuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JTextField edtNameNV;
     private javax.swing.JTextField edtNumP;
     private javax.swing.JTextField edtPassNV;
-    private javax.swing.JTextField edtSearch;
-    private javax.swing.JTextField edtSearch2;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

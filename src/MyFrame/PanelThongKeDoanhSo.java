@@ -66,6 +66,7 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
         
         this.setVisible(b);
         NapDuLieuThongKeTheoNgayDenLuuDo();
+        btnInBC.setVisible(false);
     }
     
     //Nạp dữ liệu thống kê đến JTable
@@ -272,6 +273,7 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
         pnlChart = new javax.swing.JPanel();
         cmbDateDetail = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
+        btnInBC = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(85, 169, 150));
         setMaximumSize(new java.awt.Dimension(741, 550));
@@ -350,25 +352,35 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
 
         jLabel10.setText("Xem Chi Tiết");
 
+        btnInBC.setText("In Báo Cáo Tháng");
+        btnInBC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInBCActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(cmbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(cmbDateDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbDate, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbDateDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInBC))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -379,12 +391,13 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(cmbDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbDateDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(btnInBC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlChart, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pnlChart.getAccessibleContext().setAccessibleName("");
@@ -409,7 +422,7 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
                     String year = String.valueOf(current.get(Calendar.YEAR));
                     String date = day + "/" + month + "/" + year;
                     cmbDateDetail.addItem(date);
-                    
+                    btnInBC.setVisible(false);
                     current.add(Calendar.DAY_OF_MONTH, -1);
                     
                     try {
@@ -427,7 +440,7 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
                     String year = String.valueOf(current.get(Calendar.YEAR));
                     String date = month + "/" + year;
                     cmbDateDetail.addItem(date);
-                    
+                    btnInBC.setVisible(true);
                     current.add(Calendar.MONTH, -1);
                     
                     try {
@@ -449,6 +462,7 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
                     year -= 1;
                 }   
 
+                btnInBC.setVisible(false);
                 try 
                 {
                     NapDuLieuThongKeTheoNamDenLuuDo();
@@ -522,10 +536,19 @@ public class PanelThongKeDoanhSo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cmbDateDetailItemStateChanged
 
+    private void btnInBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInBCActionPerformed
+        // TODO add your handling code here:
+        String month = cmbDateDetail.getSelectedItem().toString().substring(0, 2);
+        System.out.println(month);
+        String s[] = {month};
+        ReportBaoCaoDoanhThu.main(s);
+    }//GEN-LAST:event_btnInBCActionPerformed
+
 
     
     DataTable dtDoanhSoTungNgay;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInBC;
     private javax.swing.JComboBox<String> cmbDate;
     private javax.swing.JComboBox<String> cmbDateDetail;
     private javax.swing.JLabel jLabel10;

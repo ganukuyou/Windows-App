@@ -7,14 +7,12 @@ package MyFrame;
 
 import com.mysql.jdbc.Connection;
 import java.io.InputStream;
-import java.sql.Array;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -42,6 +40,7 @@ public class DataTable {
     
     private static ArrayList<DataTable> ListInstanceDB = new ArrayList<>();
     
+    //Hàm khởi tạo bảng với điều kiện chiếu hết các cột
     public DataTable(String host, String db, String table, int c) throws ClassNotFoundException, SQLException
     {
         data = new ArrayList<>();
@@ -78,7 +77,7 @@ public class DataTable {
     }
     
 
-    
+    //Hàm khởi tạo DT mà sẽ nhận vào câu truy vấn
     public DataTable(String host, String db, int c, String query) throws ClassNotFoundException, SQLException
     {
         if(data == null)
@@ -117,6 +116,7 @@ public class DataTable {
         ListInstanceDB.add(this);
     }
     
+    //Trả về hàng ở vị trí i
     public Object[] getRow(int i)
     {   
         if(i > RowCount - 1)
@@ -132,6 +132,7 @@ public class DataTable {
         return o;
     }
     
+    //Trả về cột ở vị trí i
     public Object[] getColumn(int i)
     {   
         if(i > ColumnCount - 1)
@@ -147,6 +148,7 @@ public class DataTable {
         return o;
     }
     
+    //Nhân nguyên bảng dưới dạng mảng 2 chiều
     public Object[][] getTable()
     {
         Object o[][] = new Object[RowCount][ColumnCount];
@@ -162,11 +164,13 @@ public class DataTable {
         return o;
     }
 
+    //Lấy số lượng hàng
     public int getRowCount()
     {
         return RowCount;
     }
     
+    //hàm nhận về image nếu trong bảng có chưa image
     public InputStream getImage(int index) throws SQLException
     {
         int i = 0;
@@ -180,6 +184,7 @@ public class DataTable {
         return  null;
     }
     
+    //Hàm update dữ liệu ở vị trí row
     public boolean UpdateDataTable(int index_of_id, int row, Object newdata[]) throws SQLException
     {
         if(row >= RowCount || newdata.length > ColumnCount)
@@ -212,6 +217,7 @@ public class DataTable {
         return true;
     }
     
+    //Chèn dữ liệu vào bảng và cho tự động tăng khóa chính
     public boolean InsertDataTable(int index_of_id, Object newdata[]) throws SQLException
     {
         if(newdata.length > ColumnCount)
@@ -364,6 +370,7 @@ public class DataTable {
         rs.beforeFirst();
     }
     
+    //Làm mới dữ liệu
     public void RefershData() throws SQLException
     {
         data.clear();
@@ -400,6 +407,7 @@ public class DataTable {
       return s1;
     }
     
+    //Hàm update dữ liệu dành riêng cho bảng đồng hồ
     public static void UpdateModelTonKho(String host, String db, String user, String pass, int ID, int TonKho) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.jdbc.Driver");

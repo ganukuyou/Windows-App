@@ -272,7 +272,7 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
     
     private void Login() throws SQLException, ClassNotFoundException, IOException
     {
-        
+        //Có nhập đầy đủ hay chưa
         if (edtUser.getText().isEmpty() || String.valueOf(edtPass.getPassword()).isEmpty()) {
             JOptionPane.showMessageDialog(this, "Tài Khoản Hoặc Mật Khẩu Không Được Để Trống", "Cảnh Báo", JOptionPane.OK_OPTION);
             return;
@@ -280,6 +280,7 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
         
         
 
+        //Kiểu tra id có năm trong csdl hay k
         if (!CheckID()) 
         {
             JOptionPane.showMessageDialog(this, "Tài Khoản Không Hợp Lệ", "Thông báo", JOptionPane.OK_OPTION);
@@ -316,13 +317,6 @@ public class GiaoDienDangNhap extends javax.swing.JFrame {
                     }
                     break;
                 } 
-                case "KT":
-                {
-                    new GiaoDienKyThuat().setVisible(true);
-                    RefershInput();
-                    this.setVisible(false);
-                    break;
-                }
                 case "QK":
                 {
                     new GiaoDienQuanLyKho().setVisible(true);

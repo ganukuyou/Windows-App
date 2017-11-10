@@ -62,7 +62,6 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
 
         jPanel12 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        edtSearch = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         lsvBangGia = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
@@ -97,9 +96,8 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
         jPanel12.setPreferredSize(new java.awt.Dimension(741, 212));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setText("Tìm Sản Phẩm:");
-        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
-        jPanel12.add(edtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 238, -1));
+        jLabel8.setText("Danh Sách Sản Phẩm");
+        jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         lsvBangGia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -528,7 +526,6 @@ public class panelDanhMucSanPham_BanHang extends javax.swing.JPanel {
     private javax.swing.JButton btnHuyThanhToan;
     private javax.swing.JButton btnXuatHoaDon;
     private javax.swing.JComboBox<String> cmbIDKhachHang;
-    private javax.swing.JTextField edtSearch;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

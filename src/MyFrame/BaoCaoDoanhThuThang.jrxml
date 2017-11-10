@@ -116,8 +116,7 @@ FROM
      `model` model INNER JOIN `dongho` dongho ON model.`MODELID` = dongho.`MODELID`
      INNER JOIN `chitiethd` chitiethd ON dongho.`SERI` = chitiethd.`SERI`
      INNER JOIN `nhanvien` nhanvien ON dongho.`IDNV` = nhanvien.`IDNV`
-     INNER JOIN `hoadon` hoadon ON nhanvien.`IDNV` = hoadon.`IDNV`
-     AND chitiethd.`IDHD` = hoadon.`IDHD`
+     INNER JOIN `hoadon` hoadon ON chitiethd.`IDHD` = hoadon.`IDHD`
      INNER JOIN `cuahang` cuahang ON hoadon.`MSTCH` = cuahang.`MSTCH`
 GROUP BY
      model.`MODELID`
